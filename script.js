@@ -44,3 +44,20 @@ const allCardsMarkup = cardsData.map(card => generateCardMarkup(card)).join('');
 const cardsContainerEl = document.querySelector('.cards-container');
 
 cardsContainerEl.insertAdjacentHTML('beforeend', allCardsMarkup);
+
+
+// ===============================
+// New snippet
+// ===============================
+
+const newSnippetOpenButton = document.querySelector('.new-snippet_open-button');
+const newSnippetCloseButton = document.querySelector('.new-snippet_close-button');
+const newSnippetOverlay = document.querySelector('.new-snippet_overlay');
+
+newSnippetOpenButton.addEventListener('click', () => {
+  newSnippetOverlay.classList.add('active');
+})
+
+newSnippetCloseButton.addEventListener('click', () => {
+  newSnippetOverlay.classList.remove('active');
+})
