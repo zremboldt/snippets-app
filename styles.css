@@ -24,8 +24,8 @@ html {
   padding: 0;
 }
 
-::-moz-selection { background: yellow; }
-::selection { background: yellow; }
+::-moz-selection { background: gold; }
+::selection { background: gold; }
 
 /* ========== */
 /* Typography */
@@ -114,7 +114,7 @@ h2 {
 .new-snippet_overlay {
   position:fixed;
   inset: 0px;
-  background-color: hsla(0, 0%, 100%, 0.75);
+  background-color: hsla(50, 100%, 50%, 0.6);
   backdrop-filter: blur(10px);
   display: flex;
   justify-content: center;
