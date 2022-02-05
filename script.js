@@ -84,3 +84,33 @@ newSnippetToggleButton.addEventListener('click', () => {
     newSnippetToggleButton.innerText = 'Close'
   }
 })
+
+// ===============================
+// Image drop zone
+// ===============================
+
+const newSnippetImageDropZone = document.querySelector('.new-snippet_image-drop-zone');
+
+newSnippetImageDropZone.addEventListener('dragover', (e) => {
+  e.preventDefault(); // Prevent file from being opened
+
+  if (!newSnippetImageDropZone.classList.contains('active')) {
+    newSnippetImageDropZone.classList.add('active');
+  }
+})
+
+newSnippetImageDropZone.addEventListener('dragleave', (e) => {
+  newSnippetImageDropZone.classList.remove('active');
+})
+
+newSnippetImageDropZone.addEventListener('drop', (e) => {
+  e.preventDefault(); // Prevent file from being opened
+  console.log('File(s) dropped');
+
+  [...e.dataTransfer.items].forEach(item => {
+    if (item.kind === 'file') {
+      const file = item.getAsFile();
+      console.log(file.name);
+    }
+  })
+})

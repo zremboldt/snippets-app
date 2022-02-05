@@ -253,6 +253,11 @@ main {
   font-size: 18px;
 }
 
+.new-snippet_image-drop-zone.active {
+  outline: 3px solid black;
+  outline-offset: 3px;
+}
+
 .new-snippet_title-input {
   width: 100%;
   height: 50px;
