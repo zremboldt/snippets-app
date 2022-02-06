@@ -12,7 +12,7 @@ const cardsData = [
   {
     image: 'https://pbs.twimg.com/media/EFUZQ-uXUAAAj-g?format=jpg&name=medium',
     title: "Here's a title",
-    note: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`
+    note: `Notes are automatically truncated to two lines for the preview as you can see here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`
   },
   {
     image: 'https://pbs.twimg.com/media/FBsdNX3UcAYI9r5?format=jpg&name=4096x4096',
@@ -30,7 +30,7 @@ const cardsData = [
     note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
   },
   {
-    title: "Here's my super long title that will be cut off at one line thanks to CSS.",
+    title: "Titles are truncated to one line for the preview as you can see here.",
     image: 'https://i.etsystatic.com/5882372/r/il/6ec79c/1574779667/il_1588xN.1574779667_72z4.jpg',
   },
   {
