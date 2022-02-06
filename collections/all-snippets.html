@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snippets</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+
+  <body>
+    <main>
+      <h1 class="collection-title">All Snippets</h1>
+      <div class="cards-container"></div>
+    </main>
+    <button class="new-snippet_toggle-button">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23 9L9 23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9 9L23 23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>            
+    </button>
+    
+    <div class="new-snippet_overlay">
+      <div class="new-snippet">
+        <form action="" method="post">
+          <div class="new-snippet_image-drop-zone">Drop image here</div>
+          <input
+            class="new-snippet_title-input"
+            type="text"
+            placeholder="Add a title"
+          />
+          <input
+            class="new-snippet_url-input"
+            type="url"
+            placeholder="Add a link"
+          />
+          <textarea
+            class="new-snippet_textarea"
+            name=""
+            placeholder="Add a note"
+          ></textarea>
+          <button type="submit" class="new-snippet_save-button">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="../script.js"></script>
+  </body>
+</html>

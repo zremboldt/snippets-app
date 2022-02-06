@@ -3,7 +3,6 @@
 /* ===== */
 
 :root {
-
   /* Elements */
   --font-family: monospace, sans-serif;
   --border-radius-snippet: 10px;
@@ -12,22 +11,26 @@
   --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-html { 
-  box-sizing: border-box; 
+html {
+  box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
   margin: 0;
   padding: 0;
 }
 
-::-moz-selection { background: gold; }
-::selection { background: gold; }
-
-
+::-moz-selection {
+  background: gold;
+}
+::selection {
+  background: gold;
+}
 
 /* ====== */
 /* Global */
@@ -44,11 +47,6 @@ button {
   font-family: var(--font-family);
   font-size: 20px;
   line-height: 0;
-  transition: transform 150ms var(--ease-out-quart);
-}
-
-button:active {
-  transform: scale(0.98);
 }
 
 .lock-scroll {
@@ -59,10 +57,23 @@ button:active {
 /* Typography */
 /* ========== */
 
-h1, h2, h3, h4, h5, h6, p, span, li {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+li {
   color: hsl(236, 39%, 17%);
   font-family: var(--font-family);
   font-weight: 300;
+}
+
+h1 {
+  font-size: 52px;
+  line-height: 1.1;
 }
 
 h2 {
@@ -77,15 +88,15 @@ h3 {
 
 p {
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 /* ====== */
 /* Layout */
 /* ====== */
 
-body { 
-  background-color: gold; 
+body {
+  background-color: gold;
   padding: 100px 4%;
   font-family: var(--font-family);
 }
@@ -106,7 +117,7 @@ main {
 .cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  gap: 24px;
 }
 
 /* Text card */
@@ -156,7 +167,8 @@ main {
   left: 0;
   bottom: 0;
   padding: 14px;
-  transition: opacity 300ms var(--ease-out-quart), transform 300ms var(--ease-out-quart);
+  transition: opacity 300ms var(--ease-out-quart),
+    transform 300ms var(--ease-out-quart);
   opacity: 0;
   transform: translate3d(0, 20px, 0);
 }
@@ -165,37 +177,48 @@ main {
   margin-top: 8px;
 }
 
-.image-card-title, .image-card-note {
+.image-card-title,
+.image-card-note {
   color: white;
-  line-height: 1.3;
+  line-height: 1.4;
 }
 
 .image-card-title {
   font-size: 16px;
   font-weight: 700;
+  /* Handles truncating text */
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /*  */
 }
 
 .image-card-note {
   font-size: 14px;
   /* Handles truncating text */
   display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical; 
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   /*  */
 }
-
 
 /* ================== */
 /* New Snippet Styles */
 /* ================== */
 
 .new-snippet_toggle-button {
-  position:fixed;
+  position: fixed;
   z-index: 10;
-  bottom: 30px;
-  right: 30px;
-  padding: 30px;
+  bottom: min(30px, 2vw);
+  right: min(30px, 2vw);
+  padding: 20px;
+  transform: rotate(45deg);
+}
+.new-snippet_toggle-button svg {
+  transition: transform 300ms var(--ease-out-quart);
+  transform: rotate(0deg);
 }
 
 .new-snippet_toggle-button:focus-visible {
@@ -203,8 +226,12 @@ main {
   outline-offset: 3px;
 }
 
+.new-snippet_toggle-button.active svg {
+  transform: rotate(45deg);
+}
+
 .new-snippet_overlay {
-  position:fixed;
+  position: fixed;
   inset: 0px;
   background-color: hsla(50, 100%, 50%, 0.6);
   backdrop-filter: blur(10px);
@@ -220,18 +247,6 @@ main {
 .new-snippet_overlay.active {
   opacity: 1;
   pointer-events: auto;
-}
-
-.new-snippet_close-button {
-  position:fixed;
-  top: 30px;
-  right: 30px;
-  padding: 30px;
-}
-
-.new-snippet_close-button:focus-visible {
-  outline: 3px solid black;
-  outline-offset: 3px;
 }
 
 .new-snippet {
@@ -299,10 +314,31 @@ main {
   position: absolute;
   bottom: 20px;
   right: 20px;
-  padding: 24px;
+  padding: 26px;
+  transition: transform 300ms var(--ease-out-quart);
 }
 
 .new-snippet_save-button:focus-visible {
   outline: 3px solid black;
   outline-offset: 3px;
+}
+
+.new-snippet_save-button:active {
+  transform: scale(0.98);
+}
+
+/* ================ */
+/* Collections page */
+/* ================ */
+
+.collections-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  text-align: center;
+}
+
+.collections-container a {
+  background-color: white;
+  padding: 30px;
 }

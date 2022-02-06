@@ -6,29 +6,32 @@
 
 const cardsData = [
   {
-    image: 'https://pbs.twimg.com/media/EFUZQ-uXUAAAj-g?format=jpg&name=medium',
-    title: "Here's a title",
+    title: "My Snippet",
     note: `Here's a quote that I want to remember. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
   },
   {
-    image: 'https://pbs.twimg.com/media/FBsdNX3UcAYI9r5?format=jpg&name=4096x4096',
-    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    image: 'https://pbs.twimg.com/media/EFUZQ-uXUAAAj-g?format=jpg&name=medium',
+    title: "Here's a title",
+    note: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`
   },
   {
+    image: 'https://pbs.twimg.com/media/FBsdNX3UcAYI9r5?format=jpg&name=4096x4096',
+    note: `Here's a note without a title. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
+  },
+  {
+    title: "Title 1",
     note: "Lorem ipsum dolor sit amet ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
   },
   {
+    title: "Title 2",
     note: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
-  },
-  {
-    title: "My title",
-    note: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`
   },
   {
     note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
   },
   {
-    note: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`
+    title: "Here's my super long title that will be cut off at one line thanks to CSS.",
+    image: 'https://i.etsystatic.com/5882372/r/il/6ec79c/1574779667/il_1588xN.1574779667_72z4.jpg',
   },
   {
     note: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`
@@ -77,11 +80,11 @@ newSnippetToggleButton.addEventListener('click', () => {
   if (newSnippetOverlay.classList.contains('active')) {
     newSnippetOverlay.classList.remove('active');
     document.body.classList.remove('lock-scroll');
-    newSnippetToggleButton.innerText = 'New Snippet +'
+    newSnippetToggleButton.classList.remove('active');
   } else {
     newSnippetOverlay.classList.add('active');
     document.body.classList.add('lock-scroll');
-    newSnippetToggleButton.innerText = 'Close'
+    newSnippetToggleButton.classList.add('active');
   }
 })
 
