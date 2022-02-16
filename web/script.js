@@ -243,3 +243,33 @@ newSnippetImageDropZone.addEventListener('drop', (e) => {
     }
   })
 })
+
+// ===============================
+// Testing ping
+// ===============================
+
+const pingBtn = document.querySelector('.ping');
+const message = document.querySelector('.message');
+
+pingBtn.addEventListener('click', () => {
+  const data = { message: 'ping' };
+
+  fetch('http://localhost:3000/pings', {
+    method: 'POST', // or 'PUT'
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+})
+
+
+
