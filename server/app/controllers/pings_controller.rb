@@ -1,13 +1,8 @@
 class PingsController < ApplicationController
 
-  # POST /pings or /pings.json
+  # POST /pings
   def create
-    puts 'Hello world'
+    render json: {status: 'SUCCESS', message: 'Pinged', data: "Pong"}, status: :ok
   end
-
-  private
-    # Only allow a list of trusted parameters through.
-    def ping_params
-      params.fetch(:ping, {})
-    end
+  
 end

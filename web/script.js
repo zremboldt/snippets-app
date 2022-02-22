@@ -167,7 +167,7 @@ const cardsData = [
   },
 ]
 
-function generateCardMarkup({image, title, note}) {
+function generateCardMarkup({ image, title, note }) {
   if (image) {
     return `
       <div class='image-card'>
@@ -252,23 +252,18 @@ const pingBtn = document.querySelector('.ping');
 const message = document.querySelector('.message');
 
 pingBtn.addEventListener('click', () => {
-  const data = { message: 'ping' };
-
   fetch('http://localhost:3000/pings', {
-    method: 'POST', // or 'PUT'
-    mode: 'no-cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: { "message": "ping" },
   })
-  .then(response => response.json())
-  .then(data => {
-    console.log('Success:', data);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 })
 
 
