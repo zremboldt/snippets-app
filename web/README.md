@@ -1,38 +1,34 @@
-# Create a web app called Snippets
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Elements
+## Getting Started
 
-- A "Snippet" is a piece of text, an image, or both.
-- A "Collection" is a collection of snippets.
+First, run the development server:
 
-## Screens
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-### Collections screen
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Shows all of your snippet collections.
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-- Collections are similar to the concept of albums in Google Photos. The same snippet could belong to more than one collection. Collections are essentially tags.
-- By default your first collection is automatically created and will be the "All Snippets" collection.
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-### Collection screen
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-Shows all of the snippets within a single collection.
+## Learn More
 
-### Snippet screen
+To learn more about Next.js, take a look at the following resources:
 
-Shows a single snippet.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-- Shows image large.
-- Shows text.
-- Shows link/url where text or image was referenced.
-- Shows collection/s this snippet may belong to.
-- Any of these fields can be modified on this screen.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-### Create Snippet screen
+## Deploy on Vercel
 
-Shows fields used to create a snippet.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-- Image
-- Text
-- Link/url
-- Collection/s
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
