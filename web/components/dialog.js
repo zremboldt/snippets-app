@@ -2,6 +2,7 @@ import React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { Cross1Icon } from '@radix-ui/react-icons';
 import { styled } from '@stitches/react';
+import { baseButtonStyles } from '../styles/base-styles';
 
 const DialogContent = ({ children, ...props }, forwardedRef) => (
   <DialogPrimitive.Portal>
@@ -9,7 +10,9 @@ const DialogContent = ({ children, ...props }, forwardedRef) => (
     <FullScreenContainer {...props} ref={forwardedRef}>
       <Content>
         {children}
-        <CloseButton><Cross1Icon /></CloseButton>
+        <CloseButton>
+          <Cross1Icon />
+        </CloseButton>
       </Content>
     </FullScreenContainer>
   </DialogPrimitive.Portal>
@@ -32,7 +35,6 @@ const fullScreenStyles = {
 const Overlay = styled(DialogPrimitive.Overlay, {
   ...fullScreenStyles,
   background: 'rgba(0 0 0 / 0.5)',
-  overflowY: 'auto',
 });
 
 const FullScreenContainer = styled('div', {
@@ -46,19 +48,19 @@ const FullScreenContainer = styled('div', {
 const Content = styled(DialogPrimitive.Content, {
   minWidth: 300,
   background: 'white',
-  borderRadius: 10,
+  borderRadius: 18,
 });
 
 const CloseButton = styled(DialogPrimitive.Close, {
+  ...baseButtonStyles,
   position: 'fixed',
-  top: 10,
-  right: 10,
-  appearance: 'none',
-  border: 0,
-  lineHeight: 0,
-  backgroundColor: 'black',
-  padding: 14,
-  borderRadius: 999,
+  top: 18,
+  right: 18,
+  padding: 16,
+  '&:focus-visible': {
+    outline: '3px solid black',
+    outlineOffset: 3,
+  },
   '& svg': {
     color: 'white',
     width: 20,

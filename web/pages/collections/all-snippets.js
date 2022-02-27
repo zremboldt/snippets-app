@@ -8,6 +8,7 @@ import { styled } from '@stitches/react';
 import { baseButtonStyles } from '../../styles/base-styles';
 
 export default function AllSnippets() {
+  const [open, setOpen] = useState(false);
   const [data, setData] = useState(null)
   const [isLoading, setLoading] = useState(false)
 
@@ -71,10 +72,10 @@ export default function AllSnippets() {
         </div>
       </main>
 
-      <Dialog>
+      <Dialog open={open} onOpenChange={() => setOpen(!open)}>
         <NewSnippetButton>New snippet +</NewSnippetButton>
         <DialogWrapper>
-          <NewSnippet />
+          <NewSnippet setOpen={setOpen} data={data} setData={setData} />
         </DialogWrapper>
       </Dialog>
     </div>

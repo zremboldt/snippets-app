@@ -3,38 +3,64 @@ import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { Cross1Icon } from '@radix-ui/react-icons';
 import { styled } from '@stitches/react';
 import { baseButtonStyles } from '../styles/base-styles';
+import { useFormik } from 'formik';
 
-export default function NewSnippet() {
-  // TODO: Connect inputs to fetch
-  // const handleSave = () => {
-  //   const url = 'http://localhost:3000/api/v1/snippets';
-  //   const body = {
-  //     title: inputTitle.value,
-  //     link: inputLink.value,
-  //     note: inputNote.value,
-  //   };
+export default function NewSnippet({ setOpen, data, setData }) {
+  const handleSave = async (formValues) => {
+    const url = 'http://localhost:3000/api/v1/snippets';
 
-  //   const response = await fetch(url, {
-  //     method: "POST",
-  //     headers: { "Content-Type": 'application/json' },
-  //     body: JSON.stringify(body)
-  //   })
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": 'application/json' },
+      body: JSON.stringify(formValues)
+    })
 
-  //   const data = await response.json();
-  // }
+    await response.json();
+
+    setData([formValues, ...data]); // Add new snippet to the view without making another server request.
+    setOpen(false);
+  }
+
+  const formik = useFormik({
+    initialValues: {
+      title: '',
+      url: '',
+      note: '',
+    },
+    onSubmit: (values) => {
+      handleSave(values);
+    },
+  });
 
   return (
-    <Container>
+    <Form onSubmit={formik.handleSubmit}>
       <ImageDropzone>Drop image here</ImageDropzone>
-      <TitleInput type="text" placeholder="Add a title" />
-      <UrlInput type="url" placeholder="Add a link" />
-      <NoteTextarea placeholder="Add a note"></NoteTextarea>
-      <SaveButton>Save</SaveButton>
-    </Container>
+      <TitleInput
+        type="text"
+        name="title"
+        onChange={formik.handleChange}
+        value={formik.values.title}
+        placeholder="Add a title"
+      />
+      <UrlInput
+        type="url"
+        name="url"
+        onChange={formik.handleChange}
+        value={formik.values.url}
+        placeholder="Add a link"
+      />
+      <NoteTextarea
+        name="note"
+        onChange={formik.handleChange}
+        value={formik.values.note}
+        placeholder="Add a note"
+      ></NoteTextarea>
+      <SaveButton type="submit">Save</SaveButton>
+    </Form>
   )
 }
 
-const Container = styled('div', {
+const Form = styled('form', {
   position: 'relative',
   padding: '24px',
 });
