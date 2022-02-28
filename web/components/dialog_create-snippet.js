@@ -5,7 +5,7 @@ import { styled } from '@stitches/react';
 import { baseButtonStyles } from '../styles/base-styles';
 import { useFormik } from 'formik';
 
-export default function NewSnippet({ setOpen, data, setData }) {
+export default function DialogCreateSnippet({ setOpen, data, setData }) {
   const handleSave = async (formValues) => {
     const url = 'http://localhost:3000/api/v1/snippets';
 
@@ -17,7 +17,12 @@ export default function NewSnippet({ setOpen, data, setData }) {
 
     await response.json();
 
-    setData([formValues, ...data]); // Add new snippet to the view without making another server request.
+    const optimisticUi = {
+      ...formValues,
+      id: data[0].id + 1,
+    }
+
+    setData([optimisticUi, ...data]); // Add new snippet to the view without making another server request.
     setOpen(false);
   }
 
@@ -42,13 +47,13 @@ export default function NewSnippet({ setOpen, data, setData }) {
         value={formik.values.title}
         placeholder="Add a title"
       />
-      <UrlInput
+      {/* <UrlInput
         type="url"
         name="url"
         onChange={formik.handleChange}
         value={formik.values.url}
         placeholder="Add a link"
-      />
+      /> */}
       <NoteTextarea
         name="note"
         onChange={formik.handleChange}

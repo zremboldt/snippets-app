@@ -3,9 +3,10 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../styles/AllSnippets.module.css'
 import { useState, useEffect } from 'react'
-import NewSnippet from '../../components/new-snippet';
+import DialogCreateSnippet from '../../components/dialog_create-snippet';
 import { styled } from '@stitches/react';
 import { baseButtonStyles } from '../../styles/base-styles';
+import DialogViewSnippet from '../../components/dialog_view-snippet';
 
 export default function AllSnippets() {
   const [open, setOpen] = useState(false);
@@ -36,18 +37,15 @@ export default function AllSnippets() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          All Snippets
-        </h1>
-
-
+        <h1 className={styles.title}>All Snippets</h1>
 
         <div className={styles.grid}>
-          {data.map(({ note, title, image }, i) => {
+          {data.map(({ note, title, image, id }) => {
             if (image) {
               return (
-                <div className={styles.imageCard} key={i}>
+                <div className={styles.imageCard} key={id}>
                   <Image
                     src={image}
                     width={300}
@@ -63,10 +61,21 @@ export default function AllSnippets() {
             }
 
             return (
-              <div className={styles.textCard} key={i}>
-                {title && <h3>{title}</h3>}
-                {note && <p>{note}</p>}
-              </div>
+              <Dialog key={id}>
+                <TextCard>
+                  {title && <h3>{title}</h3>}
+                  {note && <p>{note}</p>}
+                </TextCard>
+                <DialogWrapper>
+                  <DialogViewSnippet
+                    title={title}
+                    note={note}
+                    id={id}
+                    data={data}
+                    setData={setData}
+                  />
+                </DialogWrapper>
+              </Dialog>
             )
           })}
         </div>
@@ -75,12 +84,36 @@ export default function AllSnippets() {
       <Dialog open={open} onOpenChange={() => setOpen(!open)}>
         <NewSnippetButton>New snippet +</NewSnippetButton>
         <DialogWrapper>
-          <NewSnippet setOpen={setOpen} data={data} setData={setData} />
+          <DialogCreateSnippet
+            setOpen={setOpen}
+            data={data}
+            setData={setData}
+          />
         </DialogWrapper>
       </Dialog>
     </div>
   )
 }
+
+const TextCard = styled(DialogTrigger, {
+  display: 'flex',
+  flexDirection: 'column',
+  padding: 30,
+  appearance: 'none',
+  border: 'none',
+  backgroundColor: 'white',
+  borderRadius: 'var(--border-radius-snippet)',
+  boxShadow: '0 10px 14px -6px hsla(30, 40%, 50%, 0.4)',
+  cursor: 'zoom-in',
+  textAlign: 'left',
+  '& > * + *': {
+    marginTop: 20,
+  },
+  '&:focus-visible': {
+    outline: '3px solid black',
+    outlineOffset: 3,
+  }
+});
 
 const NewSnippetButton = styled(DialogTrigger, {
   ...baseButtonStyles,
