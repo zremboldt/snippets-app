@@ -34,14 +34,13 @@ const fullScreenStyles = {
 
 const Overlay = styled(DialogPrimitive.Overlay, {
   ...fullScreenStyles,
-  background: 'rgba(0 0 0 / 0.5)',
+  backgroundColor: 'hsla(50, 100%, 50%, 0.8)',
+  backdropFilter: 'blur(10px)',
 });
 
 const FullScreenContainer = styled('div', {
   ...fullScreenStyles,
   overflowY: 'auto',
-  backgroundColor: 'hsla(50, 100%, 50%, 0.6)',
-  backdropFilter: 'blur(10px)',
   padding: '30px 4%',
 });
 
