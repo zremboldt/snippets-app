@@ -1,7 +1,7 @@
 import React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { Cross1Icon } from '@radix-ui/react-icons';
-import { styled } from '@stitches/react';
+import { styled, keyframes } from '@stitches/react';
 import { baseButtonStyles } from '../styles/base-styles';
 
 const DialogContent = ({ children, ...props }, forwardedRef) => (
@@ -32,9 +32,22 @@ const fullScreenStyles = {
   placeItems: 'center',
 }
 
+const fadein = keyframes({
+  '0%': { opacity: 0 },
+  '100%': { opacity: 1 },
+});
+
+const animateDialog = {
+  animationName: fadein,
+  animationDuration: '150ms',
+  animationFillMode: 'forwards',
+  animationTimingFunction: 'var(--ease-out-quart)',
+}
+
 const Overlay = styled(DialogPrimitive.Overlay, {
   ...fullScreenStyles,
-  backgroundColor: 'hsla(50, 100%, 50%, 0.8)',
+  ...animateDialog,
+  backgroundColor: 'hsla(50, 100%, 50%, 0.7)',
   backdropFilter: 'blur(10px)',
 });
 
@@ -45,6 +58,7 @@ const FullScreenContainer = styled('div', {
 });
 
 const Content = styled(DialogPrimitive.Content, {
+  ...animateDialog,
   minWidth: 300,
   background: 'white',
   borderRadius: 18,
