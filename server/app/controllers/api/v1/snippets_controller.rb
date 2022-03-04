@@ -16,6 +16,7 @@ module Api
       # Access this with a POST request to: http://localhost:3000/api/v1/snippets/
       def create
         snippet = Snippet.new(snippet_params)
+        snippet.image.attach(params[:image])
         if snippet.save
           render json: {status: 'SUCCESS', message: 'Saved snippet', data: snippet}, status: :ok
         else

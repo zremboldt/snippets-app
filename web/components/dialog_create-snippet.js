@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { Cross1Icon } from '@radix-ui/react-icons';
 import { styled } from '@stitches/react';
@@ -6,13 +6,38 @@ import { baseButtonStyles } from '../styles/base-styles';
 import { useFormik } from 'formik';
 
 export default function DialogCreateSnippet({ setOpen, data, setData }) {
+  const [image, setImage] = useState(null);
+
+  const handleDragOver = (e) => {
+    e.preventDefault(); // Prevent file from being opened
+  }
+
+  const handleImageDrop = (e) => {
+    e.preventDefault(); // Prevent file from being opened
+    console.log('File(s) dropped');
+
+    [...e.dataTransfer.items].forEach(item => {
+      if (item.kind === 'file') {
+        const file = item.getAsFile();
+        setImage(file);
+        console.log(file);
+      }
+    })
+  }
+
   const handleSave = async (formValues) => {
     const url = 'http://localhost:3000/api/v1/snippets';
+    let formData = new FormData();
+    formData.append('title', formValues.title);
+    formData.append('link', formValues.link);
+    formData.append('note', formValues.note);
+    formData.append('image', formValues.image);
+
 
     const response = await fetch(url, {
       method: "POST",
-      headers: { "Content-Type": 'application/json' },
-      body: JSON.stringify(formValues)
+      headers: { "Accept": "application/json" },
+      body: formData
     })
 
     await response.json();
@@ -29,17 +54,20 @@ export default function DialogCreateSnippet({ setOpen, data, setData }) {
   const formik = useFormik({
     initialValues: {
       title: '',
-      url: '',
+      link: '',
       note: '',
     },
     onSubmit: (values) => {
-      handleSave(values);
+      handleSave({
+        ...values,
+        image,
+      });
     },
   });
 
   return (
     <Form onSubmit={formik.handleSubmit}>
-      <ImageDropzone>Drop image here</ImageDropzone>
+      <ImageDropzone onDragOver={handleDragOver} onDrop={handleImageDrop}>Drop image here</ImageDropzone>
       <TitleInput
         type="text"
         name="title"
@@ -47,11 +75,11 @@ export default function DialogCreateSnippet({ setOpen, data, setData }) {
         value={formik.values.title}
         placeholder="Add a title"
       />
-      {/* <UrlInput
+      {/* <LinkInput
         type="url"
-        name="url"
+        name="link"
         onChange={formik.handleChange}
-        value={formik.values.url}
+        value={formik.values.link}
         placeholder="Add a link"
       /> */}
       <NoteTextarea
@@ -97,7 +125,7 @@ const TitleInput = styled('input', {
   ...baseInputStyles,
 });
 
-const UrlInput = styled('input', {
+const LinkInput = styled('input', {
   ...baseInputStyles,
 });
 

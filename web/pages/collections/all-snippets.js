@@ -26,7 +26,6 @@ export default function AllSnippets() {
   }, [])
 
   if (isLoading) return <p>Loading...</p>
-  if (!data) return <p>No snippets found.</p>
 
   return (
     <div className='layout'>
@@ -36,31 +35,35 @@ export default function AllSnippets() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <PageTitle>All Snippets</PageTitle>
+      {data ? (
+        <main>
+          <PageTitle>All Snippets</PageTitle>
 
-        <Grid>
-          {data.map((snippet) => {
-            if (snippet.image) {
-              <ImageCard
-                key={snippet.id}
-                setData={setData}
-                data={data}
-                {...snippet}
-              />
-            }
+          <Grid>
+            {data.map((snippet) => {
+              if (snippet.image) {
+                <ImageCard
+                  key={snippet.id}
+                  setData={setData}
+                  data={data}
+                  {...snippet}
+                />
+              }
 
-            return (
-              <TextCard
-                key={snippet.id}
-                setData={setData}
-                data={data}
-                {...snippet}
-              />
-            )
-          })}
-        </Grid>
-      </main>
+              return (
+                <TextCard
+                  key={snippet.id}
+                  setData={setData}
+                  data={data}
+                  {...snippet}
+                />
+              )
+            })}
+          </Grid>
+        </main>
+      ) : (
+        <p>No snippets found.</p>
+      )}
 
       <Dialog open={open} onOpenChange={() => setOpen(!open)}>
         <NewSnippetButton>New snippet +</NewSnippetButton>
