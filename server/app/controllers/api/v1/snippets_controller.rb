@@ -4,7 +4,16 @@ module Api
       # Access this with a GET request to: http://localhost:3000/api/v1/snippets
       def index
         snippets = Snippet.order('created_at DESC');
-        render json: {status: 'SUCCESS', message: 'Loaded snippets', data: snippets}, status: :ok
+        snippets_array = snippets.map do |snippet|
+          {
+            id: snippet.id,
+            title: snippet.title,
+            note: snippet.note,
+            link: snippet.link,
+            image: snippet.image.attached? ? url_for(snippet.image) : nil
+          }
+        end
+        render json: {status: 'SUCCESS', message: 'Loaded snippets', data: snippets_array}, status: :ok
       end
       
       # Access this with a GET request to: http://localhost:3000/api/v1/snippets/1

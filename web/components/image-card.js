@@ -4,17 +4,18 @@ import { Dialog, DialogTrigger, DialogWrapper } from './dialog';
 import DialogViewSnippet from './dialog_view-snippet';
 import Image from 'next/image';
 
-export default function ImageCard({ id, title, note, data, setData }) {
+export default function ImageCard({ id, title, note, image, data, setData }) {
   return (
     <Dialog>
       <Content>
-        <Image
+        {/* <Image
           src={image}
           width={300}
           height={300}
           alt={title}
-        />
-        <div className={styles.imageCardTextContainer}>
+        /> */}
+        <img src={image} width="100%" alt="" />
+        <div>
           {title && <h3>{title}</h3>}
           {note && <p>{note}</p>}
         </div>
