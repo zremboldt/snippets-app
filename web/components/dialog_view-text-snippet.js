@@ -5,7 +5,7 @@ import { styled } from '@stitches/react';
 import { baseButtonStyles } from '../styles/base-styles';
 import { useFormik } from 'formik';
 
-export default function DialogViewSnippet({ id, title, note, data, setData }) {
+export default function DialogViewTextSnippet({ id, title, note, data, setData }) {
   const handleDelete = async () => {
     const url = `http://localhost:3000/api/v1/snippets/${id}`;
 

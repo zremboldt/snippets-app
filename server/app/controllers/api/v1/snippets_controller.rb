@@ -4,7 +4,8 @@ module Api
       # Access this with a GET request to: http://localhost:3000/api/v1/snippets
       def index
         snippets = Snippet.order('created_at DESC');
-        snippets_array = snippets.map do |snippet|
+
+        snippets_with_images = snippets.map do |snippet|
           {
             id: snippet.id,
             title: snippet.title,
@@ -13,7 +14,8 @@ module Api
             image: snippet.image.attached? ? url_for(snippet.image) : nil
           }
         end
-        render json: {status: 'SUCCESS', message: 'Loaded snippets', data: snippets_array}, status: :ok
+
+        render json: {status: 'SUCCESS', message: 'Loaded snippets', data: snippets_with_images}, status: :ok
       end
       
       # Access this with a GET request to: http://localhost:3000/api/v1/snippets/1
@@ -36,6 +38,7 @@ module Api
       # Access this with a DELETE request to: http://localhost:3000/api/v1/snippets/1
       def destroy
         snippet = Snippet.find(params[:id])
+        snippet.image.attached? ? snippet.image.purge : nil
         snippet.destroy
       end
 

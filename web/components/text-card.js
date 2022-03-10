@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from '@stitches/react';
 import { Dialog, DialogTrigger, DialogWrapper } from './dialog';
-import DialogViewSnippet from './dialog_view-snippet';
+import DialogViewTextSnippet from './dialog_view-text-snippet';
 
 export default function TextCard({ id, title, note, data, setData }) {
   return (
@@ -11,7 +11,7 @@ export default function TextCard({ id, title, note, data, setData }) {
         {note && <p>{note}</p>}
       </Content>
       <DialogWrapper>
-        <DialogViewSnippet
+        <DialogViewTextSnippet
           title={title}
           note={note}
           id={id}
