@@ -11,6 +11,8 @@ module Api
             title: snippet.title,
             note: snippet.note,
             link: snippet.link,
+            image_width: snippet.image_width,
+            image_height: snippet.image_height,
             image: snippet.image.attached? ? url_for(snippet.image) : nil
           }
         end
@@ -55,7 +57,7 @@ module Api
       private
 
       def snippet_params
-        params.permit(:title, :note, :link, :image)
+        params.permit(:title, :note, :link, :image_width, :image_height, :image)
       end
     end
   end
