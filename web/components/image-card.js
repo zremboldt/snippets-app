@@ -4,22 +4,28 @@ import { Dialog, DialogTrigger, DialogWrapper } from './dialog';
 import DialogViewImageSnippet from './dialog_view-image-snippet';
 import Image from 'next/image';
 
-export default function ImageCard({ id, title, note, image, imageData, data, setData }) {
-  const [isLandscapeImg, setIsLandscapeImg] = useState(null);
+export default function ImageCard({
+  id,
+  title,
+  note,
+  image_width,
+  image_height,
+  image,
+  optimisticImage,
+  data,
+  setData
+}) {
+  const [isLandscapeImg, setIsLandscapeImg] = useState(false);
 
-  if (isLandscapeImg === null) {
-    imageData.onload = () => {
-      if (imageData.width > imageData.height) {
-        console.log('IS LANDSCAPE')
-        setIsLandscapeImg(true)
-      } else {
-        console.log('IS PORTRAIT')
-        setIsLandscapeImg(false)
-      }
-    };
-  }
+  useEffect(() => {
+    if (!image_width || !image_height) return;
 
-  if (isLandscapeImg === null) return null;
+    if (image_width > image_height) {
+      setIsLandscapeImg(true)
+    } else {
+      setIsLandscapeImg(false)
+    }
+  }, [image_width, image_height])
 
   return (
     <Dialog>
@@ -30,7 +36,7 @@ export default function ImageCard({ id, title, note, image, imageData, data, set
           height={300}
           alt={title}
         /> */}
-        <Img src={image} />
+        <Img src={optimisticImage || image} />
         <TextContainer className='imageCardTextContainer'>
           {title && <h3>{title}</h3>}
           {note && <p>{note}</p>}
@@ -39,7 +45,7 @@ export default function ImageCard({ id, title, note, image, imageData, data, set
       <DialogWrapper>
         <DialogViewImageSnippet
           isLandscapeImg={isLandscapeImg}
-          image={image}
+          image={optimisticImage || image}
           title={title}
           note={note}
           id={id}

@@ -6,33 +6,54 @@ import { baseButtonStyles } from '../styles/base-styles';
 import { useFormik } from 'formik';
 
 export default function DialogCreateSnippet({ setOpen, data, setData }) {
-  const [image, setImage] = useState(null);
+  const [isDraggingOver, setIsDraggingOver] = useState(false);
+  const [imageData, setImageData] = useState(null);
 
   const handleDragOver = (e) => {
     e.preventDefault(); // Prevent file from being opened
+    setIsDraggingOver(true);
   }
 
   const handleImageDrop = (e) => {
     e.preventDefault(); // Prevent file from being opened
-    console.log('File(s) dropped');
 
-    [...e.dataTransfer.items].forEach(item => {
-      if (item.kind === 'file') {
-        const file = item.getAsFile();
-        setImage(file);
-        console.log(file);
-      }
-    })
+    setIsDraggingOver(false);
+
+    const droppedItem = [...e.dataTransfer.items][0];
+
+    if (!droppedItem.type.startsWith('image/')) return;
+
+    const file = droppedItem.getAsFile();
+    console.log(file)
+
+    const _URL = window.URL || window.webkitURL;
+
+    let img = new Image();
+    img.src = _URL.createObjectURL(file);
+    img.onload = () => {
+      setImageData({
+        image: file,
+        width: img.width,
+        height: img.height,
+        optimisticImage: img.src
+      });
+    }
   }
 
-  const handleSave = async (formValues) => {
+  const handleSave = async ({
+    title,
+    link,
+    note,
+    imageData,
+  }) => {
     const url = 'http://localhost:3000/api/v1/snippets';
     let formData = new FormData();
-    formData.append('title', formValues.title);
-    formData.append('link', formValues.link);
-    formData.append('note', formValues.note);
-    formData.append('image', formValues.image);
-
+    formData.append('title', title);
+    formData.append('link', link);
+    formData.append('note', note);
+    formData.append('image_width', imageData.width);
+    formData.append('image_height', imageData.height);
+    formData.append('image', imageData.image);
 
     const response = await fetch(url, {
       method: "POST",
@@ -43,7 +64,10 @@ export default function DialogCreateSnippet({ setOpen, data, setData }) {
     await response.json();
 
     const optimisticUi = {
-      ...formValues,
+      title,
+      link,
+      note,
+      optimisticImage: imageData.optimisticImage,
       id: data[0].id + 1,
     }
 
@@ -60,14 +84,21 @@ export default function DialogCreateSnippet({ setOpen, data, setData }) {
     onSubmit: (values) => {
       handleSave({
         ...values,
-        image,
+        imageData,
       });
     },
   });
 
   return (
     <Form onSubmit={formik.handleSubmit}>
-      <ImageDropzone onDragOver={handleDragOver} onDrop={handleImageDrop}>Drop image here</ImageDropzone>
+      <ImageDropzone
+        isDraggingOver={isDraggingOver}
+        onDragOver={handleDragOver}
+        onDragLeave={() => setIsDraggingOver(false)}
+        onDrop={handleImageDrop}
+      >
+        {imageData ? 'Got it!' : 'Drop image here'}
+      </ImageDropzone>
       <TitleInput
         type="text"
         name="title"
@@ -106,6 +137,14 @@ const ImageDropzone = styled('div', {
   backgroundColor: 'gold',
   borderRadius: 8,
   fontSize: 18,
+  variants: {
+    isDraggingOver: {
+      true: {
+        outline: '3px solid black',
+        outlineOffset: 3,
+      }
+    }
+  }
 });
 
 const baseInputStyles = {

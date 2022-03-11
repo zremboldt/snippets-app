@@ -41,16 +41,12 @@ export default function AllSnippets() {
 
           <Grid>
             {data.map((snippet) => {
-              if (snippet.image) {
-                let imageData = new Image();
-                imageData.src = snippet.image;
-
+              if (snippet.optimisticImage || snippet.image) {
                 return (
                   <ImageCard
                     key={snippet.id}
                     setData={setData}
                     data={data}
-                    imageData={imageData}
                     {...snippet}
                   />
                 )
