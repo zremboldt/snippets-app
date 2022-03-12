@@ -2,6 +2,7 @@
   /* Elements */
   --font-family: monospace, sans-serif;
   --border-radius-snippet: 10px;
+  --border-radius-dialog: 18px;
   --color-scrollbar-bg: hsl(50, 100%, 85%);
 
   /* Easing */

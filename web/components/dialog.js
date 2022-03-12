@@ -61,8 +61,7 @@ const Content = styled(DialogPrimitive.Content, {
   ...animateDialog,
   minWidth: 300,
   background: 'white',
-  borderRadius: 18,
-  overflow: 'hidden',
+  borderRadius: 'var(--border-radius-dialog)',
 });
 
 const CloseButton = styled(DialogPrimitive.Close, {

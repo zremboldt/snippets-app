@@ -4,6 +4,10 @@ import { Cross1Icon } from '@radix-ui/react-icons';
 import { styled } from '@stitches/react';
 import { baseButtonStyles } from '../styles/base-styles';
 import { useFormik } from 'formik';
+import { AddToCollection } from '../assets/icon-components/add-to-collection';
+import { LinkedWebpage } from '../assets/icon-components/linked-webpage';
+import { Edit } from '../assets/icon-components/edit';
+import { Trash } from '../assets/icon-components/trash';
 
 export default function DialogViewImageSnippet({ id, title, note, image, data, setData, isLandscapeImg = false }) {
   const handleDelete = async () => {
@@ -24,13 +28,27 @@ export default function DialogViewImageSnippet({ id, title, note, image, data, s
       <TextContainer>
         {title && <h3>{title}</h3>}
         {note && <p>{note}</p>}
-        <button onClick={handleDelete}>Delete</button>
       </TextContainer>
+      <ButtonContainer>
+        <Button>
+          <AddToCollection />
+        </Button>
+        <Button>
+          <LinkedWebpage />
+        </Button>
+        <Button>
+          <Edit />
+        </Button>
+        <Button onClick={handleDelete}>
+          <Trash />
+        </Button>
+      </ButtonContainer>
     </Container>
   )
 }
 
 const Container = styled('div', {
+  position: 'relative',
   display: 'flex',
   variants: {
     layout: {
@@ -54,6 +72,7 @@ const Img = styled('img', {
   objectFit: 'cover',
   // width: '100%',
   pointerEvents: 'none',
+  borderRadius: 'var(--border-radius-dialog)',
 })
 
 const TextContainer = styled('div', {
@@ -61,4 +80,25 @@ const TextContainer = styled('div', {
   '& > * + *': {
     marginTop: 20,
   },
+});
+
+const ButtonContainer = styled('div', {
+  position: 'absolute',
+  top: 40,
+  right: -20,
+  '& > button + button': {
+    marginTop: 6,
+  }
+});
+
+const Button = styled('button', {
+  ...baseButtonStyles,
+  width: 40,
+  height: 40,
+  padding: 0,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexShrink: 0,
+  color: 'white',
 });

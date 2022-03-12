@@ -23,18 +23,17 @@ export default function DialogCreateSnippet({ setOpen, data, setData }) {
 
     if (!droppedItem.type.startsWith('image/')) return;
 
+    // ↓ Load the image so we can get the dimensions and a preview image which shows optimistically without fetching from the server.
     const file = droppedItem.getAsFile();
-    console.log(file)
-
-    const _URL = window.URL || window.webkitURL;
+    const windowUrl = window.URL || window.webkitURL;
 
     let img = new Image();
-    img.src = _URL.createObjectURL(file);
+    img.src = windowUrl.createObjectURL(file);
     img.onload = () => {
       setImageData({
         image: file,
-        width: img.width,
-        height: img.height,
+        image_width: img.width,
+        image_height: img.height,
         optimisticImage: img.src
       });
     }
@@ -51,9 +50,9 @@ export default function DialogCreateSnippet({ setOpen, data, setData }) {
     formData.append('title', title);
     formData.append('link', link);
     formData.append('note', note);
-    formData.append('image_width', imageData.width);
-    formData.append('image_height', imageData.height);
-    formData.append('image', imageData.image);
+    formData.append('image_width', imageData?.image_width || null);
+    formData.append('image_height', imageData?.image_height || null);
+    formData.append('image', imageData?.image || null);
 
     const response = await fetch(url, {
       method: "POST",
@@ -67,7 +66,9 @@ export default function DialogCreateSnippet({ setOpen, data, setData }) {
       title,
       link,
       note,
-      optimisticImage: imageData.optimisticImage,
+      image_width: imageData?.image_width || null,
+      image_height: imageData?.image_height || null,
+      optimisticImage: imageData?.optimisticImage || null,
       id: data[0].id + 1,
     }
 
