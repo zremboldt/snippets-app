@@ -115,7 +115,7 @@ const TextContainer = styled('div', {
 const ButtonsGroup = styled('div', {
   position: 'absolute',
   top: 40,
-  right: -20,
+  right: -17,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-end',
