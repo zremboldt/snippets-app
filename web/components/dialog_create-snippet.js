@@ -107,13 +107,13 @@ export default function DialogCreateSnippet({ setOpen, data, setData }) {
         value={formik.values.title}
         placeholder="Add a title"
       />
-      {/* <LinkInput
+      <LinkInput
         type="url"
         name="link"
         onChange={formik.handleChange}
         value={formik.values.link}
         placeholder="Add a link"
-      /> */}
+      />
       <NoteTextarea
         name="note"
         onChange={formik.handleChange}

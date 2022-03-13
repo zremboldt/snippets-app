@@ -8,6 +8,7 @@ export default function ImageCard({
   id,
   title,
   note,
+  link,
   image_width,
   image_height,
   image,
@@ -48,6 +49,7 @@ export default function ImageCard({
           image={optimisticImage || image}
           title={title}
           note={note}
+          link={link}
           id={id}
           data={data}
           setData={setData}
