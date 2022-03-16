@@ -46,6 +46,7 @@ export default function DialogCreateSnippet({ setOpen, data, setData }) {
     imageData,
   }) => {
     const url = 'http://localhost:3000/api/v1/snippets';
+
     let formData = new FormData();
     formData.append('title', title);
     formData.append('link', link);
@@ -128,13 +129,14 @@ export default function DialogCreateSnippet({ setOpen, data, setData }) {
 const Form = styled('form', {
   position: 'relative',
   padding: '24px',
+  width: 600,
 });
 
 const ImageDropzone = styled('div', {
   display: 'grid',
   placeContent: 'center',
   width: '100%',
-  height: 300,
+  height: 220,
   backgroundColor: 'gold',
   borderRadius: 8,
   fontSize: 18,
