@@ -4,32 +4,29 @@ import { Cross1Icon } from '@radix-ui/react-icons';
 import { styled } from '@stitches/react';
 import { baseButtonStyles } from '../styles/base-styles';
 import { useFormik } from 'formik';
+import SnippetButtonsGroup from './snippet-buttons-group';
 
-export default function DialogViewTextSnippet({ id, title, note, data, setData }) {
-  const handleDelete = async () => {
-    const url = `http://localhost:3000/api/v1/snippets/${id}`;
-
-    const response = await fetch(url, {
-      method: "DELETE",
-      headers: { "Content-Type": 'application/json' },
-    })
-
-    const updatedData = data.filter((snippet) => snippet.id !== id);
-    setData(updatedData);
-  }
-
+export default function DialogViewTextSnippet({ id, title, note, link, data, setData }) {
   return (
     <Container>
       {title && <h3>{title}</h3>}
       {note && <p>{note}</p>}
-      <button onClick={handleDelete}>Delete</button>
+      <SnippetButtonsGroup
+        id={id}
+        link={link}
+        data={data}
+        setData={setData}
+      />
     </Container>
   )
 }
 
 const Container = styled('div', {
+  position: 'relative',
   padding: 34,
+  paddingRight: 55,
   maxWidth: 600,
+  minHeight: 256,
   '& > * + *': {
     marginTop: 20,
   },
