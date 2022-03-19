@@ -31,15 +31,15 @@ Snippet.create([
   },
   {
     id: 5,
-    note: "“The details are not the details. They make the design.” – Charles Eames",
+    note: "“We are what we repeatedly do. Excellence, then, is not an act, but a habit.” – Aristotle",
   },
   {
     id: 6,
-    note: "“The role of the designer is that of a good, thoughtful host anticipating the needs of his guests.” – Charles Eames",
+    note: "“Whitespace is like air: it is necessary for design to breathe.” – Wojciech Zieliński",
   },
   {
     id: 7,
-    note: "“Whitespace is like air: it is necessary for design to breathe.” – Wojciech Zieliński",
+    note: "“The role of the designer is that of a good, thoughtful host anticipating the needs of his guests.” – Charles Eames",
   },
   {
     id: 8,
@@ -83,7 +83,7 @@ Snippet.create([
   },
   {
     id: 18,
-    note: "“We are what we repeatedly do. Excellence, then, is not an act, but a habit.” – Aristotle",
+    note: "“Certainty is a closing of the mind. To create something new you must have doubt.” – Milton Glaser",
   },
 ])
 
@@ -121,4 +121,4 @@ Collection.create([
   },
 ])
 
-p "Created #{Collection.count} collections."
+puts "Created #{Collection.count} collections."
