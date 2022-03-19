@@ -6,6 +6,10 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+######################################################################
+# Create snippets
+######################################################################
+
 Snippet.destroy_all
 
 Snippet.create([
@@ -95,6 +99,12 @@ Snippet.create([
 # ])
 
 puts "Created #{Snippet.count} snippets."
+
+######################################################################
+# Create collections
+######################################################################
+
+Collection.destroy_all
 
 Collection.create([
   {
