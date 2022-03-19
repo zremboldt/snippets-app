@@ -5,12 +5,13 @@ import { styled } from '@stitches/react';
 import { baseButtonStyles } from '../styles/base-styles';
 import { useFormik } from 'formik';
 import SnippetButtonsGroup from './snippet-buttons-group';
+import Note from './note';
 
 export default function DialogViewTextSnippet({ id, title, note, link, data, setData }) {
   return (
     <Container>
       {title && <h3>{title}</h3>}
-      {note && <p>{note}</p>}
+      {note && <Note note={note} />}
       <SnippetButtonsGroup
         id={id}
         link={link}
@@ -26,7 +27,7 @@ const Container = styled('div', {
   padding: 34,
   paddingRight: 55,
   maxWidth: 600,
-  minHeight: 256,
+  minHeight: 252,
   '& > * + *': {
     marginTop: 20,
   },
