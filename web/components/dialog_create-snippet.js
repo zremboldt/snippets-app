@@ -51,9 +51,12 @@ export default function DialogCreateSnippet({ setOpen, data, setData }) {
     formData.append('title', title);
     formData.append('link', link);
     formData.append('note', note);
-    formData.append('image_width', imageData?.image_width || null);
-    formData.append('image_height', imageData?.image_height || null);
-    formData.append('image', imageData?.image || null);
+
+    if (imageData) {
+      formData.append('image_width', imageData.image_width);
+      formData.append('image_height', imageData.image_height);
+      formData.append('image', imageData.image);
+    }
 
     const response = await fetch(url, {
       method: "POST",

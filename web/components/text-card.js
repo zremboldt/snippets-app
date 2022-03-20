@@ -4,7 +4,7 @@ import { Dialog, DialogTrigger, DialogWrapper } from './dialog';
 import DialogViewTextSnippet from './dialog_view-text-snippet';
 import Note from './note';
 
-export default function TextCard({ id, title, note, data, setData }) {
+export default function TextCard({ id, title, note, link, data, setData }) {
   return (
     <Dialog>
       <Content>
@@ -15,6 +15,7 @@ export default function TextCard({ id, title, note, data, setData }) {
         <DialogViewTextSnippet
           title={title}
           note={note}
+          link={link}
           id={id}
           data={data}
           setData={setData}
