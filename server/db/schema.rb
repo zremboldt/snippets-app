@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_18_023316) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_22_022653) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_18_023316) do
     t.string "content_type"
     t.text "metadata"
     t.string "service_name", null: false
-    t.integer "byte_size", null: false
+    t.bigint "byte_size", null: false
     t.string "checksum"
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
@@ -45,27 +45,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_18_023316) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "snippet_collections", force: :cascade do |t|
-    t.integer "snippet_id", null: false
-    t.integer "collection_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["collection_id"], name: "index_snippet_collections_on_collection_id"
-    t.index ["snippet_id"], name: "index_snippet_collections_on_snippet_id"
-  end
-
   create_table "snippets", force: :cascade do |t|
     t.string "title"
-    t.string "link"
     t.text "note"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "link"
     t.integer "image_width"
     t.integer "image_height"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "collection_id"
+    t.index ["collection_id"], name: "index_snippets_on_collection_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "snippet_collections", "collections"
-  add_foreign_key "snippet_collections", "snippets"
+  add_foreign_key "snippets", "collections"
 end
