@@ -1,7 +1,8 @@
 :root {
   /* Elements */
   --font-family: monospace, sans-serif;
-  --border-radius-snippet: 10px;
+  --padding-card: 30px;
+  --border-radius-card: 10px;
   --border-radius-dialog: 18px;
   --color-scrollbar-bg: hsl(50, 100%, 85%);
 
@@ -84,7 +85,7 @@ h3 {
   line-height: 1.1;
 }
 
-p {
+p, a {
   font-size: 18px;
   line-height: 1.4;
 }

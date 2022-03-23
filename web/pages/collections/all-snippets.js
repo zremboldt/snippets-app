@@ -9,8 +9,8 @@ import ImageCard from '../../components/image-card';
 
 export default function AllSnippets() {
   const [open, setOpen] = useState(false);
-  const [data, setData] = useState(null)
-  const [isLoading, setLoading] = useState(false)
+  const [data, setData] = useState(null);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true)
@@ -25,7 +25,8 @@ export default function AllSnippets() {
       })
   }, [])
 
-  if (isLoading) return <p>Loading...</p>
+  if (isLoading) return null;
+  // if (isLoading) return <p>Loading...</p>
 
   return (
     <div className='layout'>

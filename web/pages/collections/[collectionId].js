@@ -6,17 +6,19 @@ import { styled } from '@stitches/react';
 import { baseButtonStyles } from '../../styles/base-styles';
 import TextCard from '../../components/text-card';
 import ImageCard from '../../components/image-card';
-import kebabCase from 'lodash.kebabcase';
-import Link from 'next/link'
+import { useRouter } from 'next/router'
 
-export default function Collections() {
+export default function Collection() {
+  const router = useRouter()
+  const { collectionId } = router.query
+
   const [open, setOpen] = useState(false);
   const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true)
-    fetch('http://localhost:3000/api/v1/collections', {
+    fetch(`http://localhost:3000/api/v1/collections/${collectionId}`, {
       method: "GET",
       headers: { "Content-Type": 'application/json' },
     })
@@ -25,7 +27,12 @@ export default function Collections() {
         setData(data)
         setLoading(false)
       })
-  }, [])
+  }, [collectionId])
+
+  console.log(data)
+
+  if (isLoading) return null;
+  // if (isLoading) return <p>Loading...</p>
 
   return (
     <div className='layout'>
@@ -35,26 +42,42 @@ export default function Collections() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <PageTitle>Collections</PageTitle>
+      {data && (
+        <main>
+          <PageTitle>{data.collection.name}</PageTitle>
 
-        <Grid>
-          <Card href={`/collections/all-snippets`}>All snippets</Card>
-          {data && data.map((collection) => {
-            return (
-              <Card
-                key={collection.id}
-                href={`/collections/${collection.id}`}
-              >
-                {collection.name}
-              </Card>
-            )
-          })}
-        </Grid>
-      </main>
+          {data.snippets.length ? (
+            <Grid>
+              {data.snippets.map((snippet) => {
+                if (snippet.optimisticImage || snippet.image) {
+                  return (
+                    <ImageCard
+                      key={snippet.id}
+                      setData={setData}
+                      data={data}
+                      {...snippet}
+                    />
+                  )
+                }
+
+                return (
+                  <TextCard
+                    key={snippet.id}
+                    setData={setData}
+                    data={data}
+                    {...snippet}
+                  />
+                )
+              })}
+            </Grid>
+          ) : (
+            <p>This collection is empty. Add some snippets!</p>
+          )}
+        </main>
+      )}
 
       <Dialog open={open} onOpenChange={() => setOpen(!open)}>
-        <NewSnippetButton>New collection +</NewSnippetButton>
+        <NewSnippetButton>New snippet +</NewSnippetButton>
         <DialogWrapper>
           <DialogCreateSnippet
             setOpen={setOpen}
@@ -75,13 +98,6 @@ const Grid = styled('div', {
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
   gap: 24,
-});
-
-const Card = styled('a', {
-  padding: 'var(--padding-card)',
-  backgroundColor: 'white',
-  borderRadius: 'var(--border-radius-card)',
-  fontWeight: 'bold',
 });
 
 const NewSnippetButton = styled(DialogTrigger, {

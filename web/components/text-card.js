@@ -28,11 +28,11 @@ export default function TextCard({ id, title, note, link, data, setData }) {
 const Content = styled(DialogTrigger, {
   display: 'flex',
   flexDirection: 'column',
-  padding: 30,
+  padding: 'var(--padding-card)',
   appearance: 'none',
   border: 'none',
   backgroundColor: 'white',
-  borderRadius: 'var(--border-radius-snippet)',
+  borderRadius: 'var(--border-radius-card)',
   boxShadow: '0 10px 14px -6px hsla(30, 40%, 50%, 0.4)',
   cursor: 'zoom-in',
   textAlign: 'left',
