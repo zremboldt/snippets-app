@@ -17,7 +17,6 @@ module Api
           snippets: associated_snippets
         }
 
-        puts collection.snippets
         render json: {status: 'SUCCESS', message: 'Loaded collection', data: data}, status: :ok
       end
 

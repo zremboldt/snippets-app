@@ -2,6 +2,7 @@
   /* Elements */
   --font-family: monospace, sans-serif;
   --padding-card: 30px;
+  --box-shadow-card: 0 10px 12px -6px hsla(30, 100%, 50%, 0.5);
   --border-radius-card: 10px;
   --border-radius-dialog: 18px;
   --color-scrollbar-bg: hsl(50, 100%, 85%);

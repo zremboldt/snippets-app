@@ -61,7 +61,7 @@ module Api
       private
 
       def snippet_params
-        params.permit(:title, :note, :link, :image_width, :image_height, :image)
+        params.permit(:title, :note, :link, :image_width, :image_height, :image, :collection_id)
       end
     end
   end

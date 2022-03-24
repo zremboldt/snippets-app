@@ -14,10 +14,12 @@ export default function Collection() {
 
   const [open, setOpen] = useState(false);
   const [data, setData] = useState(null);
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true)
+    if (!collectionId) return;
+
     fetch(`http://localhost:3000/api/v1/collections/${collectionId}`, {
       method: "GET",
       headers: { "Content-Type": 'application/json' },
@@ -28,8 +30,6 @@ export default function Collection() {
         setLoading(false)
       })
   }, [collectionId])
-
-  console.log(data)
 
   if (isLoading) return null;
   // if (isLoading) return <p>Loading...</p>
@@ -42,39 +42,37 @@ export default function Collection() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {data && (
-        <main>
-          <PageTitle>{data.collection.name}</PageTitle>
+      <main>
+        <PageTitle>{data.collection.name}</PageTitle>
 
-          {data.snippets.length ? (
-            <Grid>
-              {data.snippets.map((snippet) => {
-                if (snippet.optimisticImage || snippet.image) {
-                  return (
-                    <ImageCard
-                      key={snippet.id}
-                      setData={setData}
-                      data={data}
-                      {...snippet}
-                    />
-                  )
-                }
-
+        {data.snippets.length ? (
+          <Grid>
+            {data.snippets.map((snippet) => {
+              if (snippet.optimisticImage || snippet.image) {
                 return (
-                  <TextCard
+                  <ImageCard
                     key={snippet.id}
                     setData={setData}
                     data={data}
                     {...snippet}
                   />
                 )
-              })}
-            </Grid>
-          ) : (
-            <p>This collection is empty. Add some snippets!</p>
-          )}
-        </main>
-      )}
+              }
+
+              return (
+                <TextCard
+                  key={snippet.id}
+                  setData={setData}
+                  data={data}
+                  {...snippet}
+                />
+              )
+            })}
+          </Grid>
+        ) : (
+          <p>This collection is empty. Add some snippets!</p>
+        )}
+      </main>
 
       <Dialog open={open} onOpenChange={() => setOpen(!open)}>
         <NewSnippetButton>New snippet +</NewSnippetButton>
@@ -83,6 +81,7 @@ export default function Collection() {
             setOpen={setOpen}
             data={data}
             setData={setData}
+            currentCollectionId={collectionId}
           />
         </DialogWrapper>
       </Dialog>

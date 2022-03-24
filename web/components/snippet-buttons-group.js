@@ -9,6 +9,7 @@ import { Trash } from '../assets/icon-components/trash';
 export default function SnippetButtonsGroup({ id, link, data, setData }) {
   const [isDeleteAvailable, setIsDeleteAvailable] = useState(false);
 
+  console.log(data)
   const handleDelete = async () => {
     const url = `http://localhost:3000/api/v1/snippets/${id}`;
 
@@ -17,8 +18,11 @@ export default function SnippetButtonsGroup({ id, link, data, setData }) {
       headers: { "Content-Type": 'application/json' },
     })
 
-    const updatedData = data.filter((snippet) => snippet.id !== id);
-    setData(updatedData);
+    const updatedSnippetsData = data.snippets.filter((snippet) => snippet.id !== id);
+    setData({
+      collection: data.collection,
+      snippets: updatedSnippetsData
+    });
   }
 
   return (

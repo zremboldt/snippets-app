@@ -13,18 +13,6 @@ import SnippetButtonsGroup from './snippet-buttons-group';
 export default function DialogViewImageSnippet({ id, title, note, link, image, data, setData, isLandscapeImg = false }) {
   const [isDeleteAvailable, setIsDeleteAvailable] = useState(false);
 
-  const handleDelete = async () => {
-    const url = `http://localhost:3000/api/v1/snippets/${id}`;
-
-    const response = await fetch(url, {
-      method: "DELETE",
-      headers: { "Content-Type": 'application/json' },
-    })
-
-    const updatedData = data.filter((snippet) => snippet.id !== id);
-    setData(updatedData);
-  }
-
   return (
     <Container layout={isLandscapeImg ? 'column' : 'row'}>
       <Img src={image} alt="" />

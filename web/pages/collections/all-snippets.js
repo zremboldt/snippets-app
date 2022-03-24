@@ -10,7 +10,7 @@ import ImageCard from '../../components/image-card';
 export default function AllSnippets() {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState(null);
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true)
@@ -20,7 +20,10 @@ export default function AllSnippets() {
     })
       .then((res) => res.json())
       .then(({ status, message, data }) => {
-        setData(data)
+        setData({
+          snippets: data,
+          collection: null
+        })
         setLoading(false)
       })
   }, [])
@@ -36,12 +39,12 @@ export default function AllSnippets() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {data ? (
-        <main>
-          <PageTitle>All Snippets</PageTitle>
+      <main>
+        <PageTitle>All Snippets</PageTitle>
 
+        {data.snippets.length ? (
           <Grid>
-            {data.map((snippet) => {
+            {data.snippets.map((snippet) => {
               if (snippet.optimisticImage || snippet.image) {
                 return (
                   <ImageCard
@@ -63,10 +66,10 @@ export default function AllSnippets() {
               )
             })}
           </Grid>
-        </main>
-      ) : (
-        <p>No snippets found.</p>
-      )}
+        ) : (
+          <p>Add some snippets!</p>
+        )}
+      </main>
 
       <Dialog open={open} onOpenChange={() => setOpen(!open)}>
         <NewSnippetButton>New snippet +</NewSnippetButton>

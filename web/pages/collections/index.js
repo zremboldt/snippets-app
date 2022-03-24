@@ -12,7 +12,7 @@ import Link from 'next/link'
 export default function Collections() {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState(null);
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true)

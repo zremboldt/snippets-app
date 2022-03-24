@@ -10,7 +10,7 @@ function checkIsQuote(note) {
 }
 
 function splitQuote(note) {
-  const lastQuotationMarkIndex = (note.lastIndexOf(`”`) || note.lastIndexOf(`"`)) + 1;
+  const lastQuotationMarkIndex = (note.includes(`”`) ? note.lastIndexOf(`”`) : note.lastIndexOf(`"`)) + 1;
   const quoteBody = note.slice(0, lastQuotationMarkIndex);
   const quoteAttribution = note.slice(lastQuotationMarkIndex).trim();
 

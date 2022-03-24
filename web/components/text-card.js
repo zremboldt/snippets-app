@@ -33,7 +33,7 @@ const Content = styled(DialogTrigger, {
   border: 'none',
   backgroundColor: 'white',
   borderRadius: 'var(--border-radius-card)',
-  boxShadow: '0 10px 14px -6px hsla(30, 40%, 50%, 0.4)',
+  boxShadow: 'var(--box-shadow-card)',
   cursor: 'zoom-in',
   textAlign: 'left',
   '& > * + *': {

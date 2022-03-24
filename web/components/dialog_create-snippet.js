@@ -5,7 +5,7 @@ import { styled } from '@stitches/react';
 import { baseButtonStyles } from '../styles/base-styles';
 import { useFormik } from 'formik';
 
-export default function DialogCreateSnippet({ setOpen, data, setData }) {
+export default function DialogCreateSnippet({ setOpen, data, setData, currentCollectionId }) {
   const [isDraggingOver, setIsDraggingOver] = useState(false);
   const [imageData, setImageData] = useState(null);
 
@@ -44,6 +44,7 @@ export default function DialogCreateSnippet({ setOpen, data, setData }) {
     link,
     note,
     imageData,
+    currentCollectionId,
   }) => {
     const url = 'http://localhost:3000/api/v1/snippets';
 
@@ -51,6 +52,7 @@ export default function DialogCreateSnippet({ setOpen, data, setData }) {
     formData.append('title', title);
     formData.append('link', link);
     formData.append('note', note);
+    formData.append('collection_id', currentCollectionId);
 
     if (imageData) {
       formData.append('image_width', imageData.image_width);
@@ -73,10 +75,14 @@ export default function DialogCreateSnippet({ setOpen, data, setData }) {
       image_width: imageData?.image_width || null,
       image_height: imageData?.image_height || null,
       optimisticImage: imageData?.optimisticImage || null,
-      id: data[0].id + 1,
+      id: data.snippets[0]?.id + 1 || 1,
     }
 
-    setData([optimisticUi, ...data]); // Add new snippet to the view without making another server request.
+    // Add new snippet to the view without making another server request.
+    setData({
+      collection: data.collection,
+      snippets: [optimisticUi, ...data.snippets]
+    });
     setOpen(false);
   }
 
@@ -90,6 +96,7 @@ export default function DialogCreateSnippet({ setOpen, data, setData }) {
       handleSave({
         ...values,
         imageData,
+        currentCollectionId,
       });
     },
   });
