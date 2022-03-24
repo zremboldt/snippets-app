@@ -81,6 +81,7 @@ const Card = styled('a', {
   padding: 'var(--padding-card)',
   backgroundColor: 'white',
   borderRadius: 'var(--border-radius-card)',
+  boxShadow: 'var(--box-shadow-card)',
   fontWeight: 'bold',
 });
 
