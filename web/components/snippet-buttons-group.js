@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { keyframes, styled } from '@stitches/react';
+import { keyframes, styled } from '../styles/stitches-theme';
 import { baseButtonStyles } from '../styles/base-styles';
 import { AddToCollection } from '../assets/icon-components/add-to-collection';
 import { LinkedWebpage } from '../assets/icon-components/linked-webpage';

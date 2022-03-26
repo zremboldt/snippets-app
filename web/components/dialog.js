@@ -1,7 +1,7 @@
 import React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { Cross1Icon } from '@radix-ui/react-icons';
-import { styled, keyframes } from '@stitches/react';
+import { styled, keyframes } from '../styles/stitches-theme';
 import { baseButtonStyles } from '../styles/base-styles';
 
 const DialogContent = ({ children, ...props }, forwardedRef) => (
@@ -59,7 +59,7 @@ const FullScreenContainer = styled('div', {
 
 const Content = styled(DialogPrimitive.Content, {
   ...animateDialog,
-  minWidth: 300,
+  width: 'min(600px, 100%)',
   background: 'white',
   borderRadius: 'var(--border-radius-dialog)',
 });

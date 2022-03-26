@@ -2,10 +2,10 @@ import { Dialog, DialogTrigger, DialogWrapper } from '../../components/dialog';
 import Head from 'next/head'
 import { useState, useEffect } from 'react'
 import DialogCreateSnippet from '../../components/dialog_create-snippet';
-import { styled } from '@stitches/react';
+import { styled } from '../../styles/stitches-theme';
 import { baseButtonStyles } from '../../styles/base-styles';
-import TextCard from '../../components/text-card';
-import ImageCard from '../../components/image-card';
+import TextCard from '../../components/snippet-card_text';
+import ImageCard from '../../components/snippet-card_image';
 
 export default function AllSnippets() {
   const [open, setOpen] = useState(false);

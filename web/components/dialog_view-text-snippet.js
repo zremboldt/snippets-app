@@ -1,7 +1,7 @@
 import React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { Cross1Icon } from '@radix-ui/react-icons';
-import { styled } from '@stitches/react';
+import { styled } from '../styles/stitches-theme';
 import { baseButtonStyles } from '../styles/base-styles';
 import { useFormik } from 'formik';
 import SnippetButtonsGroup from './snippet-buttons-group';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { styled } from '@stitches/react';
+import { styled } from '../styles/stitches-theme';
 import { Dialog, DialogTrigger, DialogWrapper } from './dialog';
 import DialogViewTextSnippet from './dialog_view-text-snippet';
 import Note from './note';

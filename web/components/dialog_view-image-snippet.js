@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { Cross1Icon } from '@radix-ui/react-icons';
-import { keyframes, styled } from '@stitches/react';
+import { keyframes, styled } from '../styles/stitches-theme';
 import { baseButtonStyles } from '../styles/base-styles';
 import { useFormik } from 'formik';
 import { AddToCollection } from '../assets/icon-components/add-to-collection';
@@ -10,11 +10,18 @@ import { Edit } from '../assets/icon-components/edit';
 import { Trash } from '../assets/icon-components/trash';
 import SnippetButtonsGroup from './snippet-buttons-group';
 
+// Doc on stitches breakpoints: https://stitches.dev/docs/breakpoints#setting-an-initial-variant
+
 export default function DialogViewImageSnippet({ id, title, note, link, image, data, setData, isLandscapeImg = false }) {
   const [isDeleteAvailable, setIsDeleteAvailable] = useState(false);
 
   return (
-    <Container layout={isLandscapeImg ? 'column' : 'row'}>
+    <Container
+      layout={isLandscapeImg ? 'column' : {
+        '@initial': 'column',
+        '@bp1': 'row'
+      }}
+    >
       <Img src={image} alt="" />
       <TextContainer>
         {title && <h3>{title}</h3>}
@@ -63,6 +70,9 @@ const Container = styled('div', {
       column: {
         maxWidth: 600,
         flexDirection: 'column',
+        '& img': {
+          width: 'calc(100% - 12px)',
+        }
       }
     }
   }

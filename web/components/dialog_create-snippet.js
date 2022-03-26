@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { Cross1Icon } from '@radix-ui/react-icons';
-import { styled } from '@stitches/react';
+import { styled } from '../styles/stitches-theme';
 import { baseButtonStyles } from '../styles/base-styles';
 import { useFormik } from 'formik';
 
@@ -139,7 +139,6 @@ export default function DialogCreateSnippet({ setOpen, data, setData, currentCol
 const Form = styled('form', {
   position: 'relative',
   padding: '24px',
-  width: 600,
 });
 
 const ImageDropzone = styled('div', {

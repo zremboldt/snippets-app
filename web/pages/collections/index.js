@@ -1,11 +1,11 @@
 import { Dialog, DialogTrigger, DialogWrapper } from '../../components/dialog';
 import Head from 'next/head'
 import { useState, useEffect } from 'react'
-import DialogCreateSnippet from '../../components/dialog_create-snippet';
-import { styled } from '@stitches/react';
+import DialogCreateCollection from '../../components/dialog_create-collection';
+import { styled } from '../../styles/stitches-theme';
 import { baseButtonStyles } from '../../styles/base-styles';
-import TextCard from '../../components/text-card';
-import ImageCard from '../../components/image-card';
+import TextCard from '../../components/snippet-card_text';
+import ImageCard from '../../components/snippet-card_image';
 import kebabCase from 'lodash.kebabcase';
 import Link from 'next/link'
 
@@ -54,9 +54,9 @@ export default function Collections() {
       </main>
 
       <Dialog open={open} onOpenChange={() => setOpen(!open)}>
-        <NewSnippetButton>New collection +</NewSnippetButton>
+        <NewCollectionButton>New collection +</NewCollectionButton>
         <DialogWrapper>
-          <DialogCreateSnippet
+          <DialogCreateCollection
             setOpen={setOpen}
             data={data}
             setData={setData}
@@ -85,7 +85,7 @@ const Card = styled('a', {
   fontWeight: 'bold',
 });
 
-const NewSnippetButton = styled(DialogTrigger, {
+const NewCollectionButton = styled(DialogTrigger, {
   ...baseButtonStyles,
   position: 'fixed',
   bottom: 'min(30px, 2vw)',
