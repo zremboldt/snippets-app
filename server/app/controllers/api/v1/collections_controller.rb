@@ -11,10 +11,22 @@ module Api
       def show
         collection = Collection.find(params[:id])
         associated_snippets = collection.snippets.order('created_at DESC');
+
+        associated_snippets_with_images = associated_snippets.map do |snippet|
+          {
+            id: snippet.id,
+            title: snippet.title,
+            note: snippet.note,
+            link: snippet.link,
+            image_width: snippet.image_width,
+            image_height: snippet.image_height,
+            image: snippet.image.attached? ? url_for(snippet.image) : nil
+          }
+        end
         
         data = {
           collection: collection,
-          snippets: associated_snippets
+          snippets: associated_snippets_with_images
         }
 
         render json: {status: 'SUCCESS', message: 'Loaded collection', data: data}, status: :ok
