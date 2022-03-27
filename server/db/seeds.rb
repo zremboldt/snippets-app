@@ -8,10 +8,17 @@
 
 
 ######################################################################
-# Create collections
+# Tear it down
 ######################################################################
 
+Snippet.destroy_all
 Collection.destroy_all
+
+
+
+######################################################################
+# Create collections
+######################################################################
 
 Collection.create!([
   {
@@ -35,8 +42,6 @@ puts "Created #{Collection.count} collections."
 ######################################################################
 # Create snippets
 ######################################################################
-
-Snippet.destroy_all
 
 Snippet.create!([
   {
@@ -129,22 +134,56 @@ Snippet.create!([
     note: "“Certainty is a closing of the mind. To create something new you must have doubt.” – Milton Glaser",
     collection_id: 1,
   },
+])
+  
+illustration_snippets = Snippet.create([
   {
     id: 19,
-    note: "Test for collection 2",
+    title: "Mountains!",
+    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    link: "https://www.pinterest.com/pin/421508846380710927/feedback/?invite_code=3fb1fd4481be463488c23ba221c138c8&sender_id=803400158435010220",
     collection_id: 2,
+    image_width: 1920,
+    image_height: 1080,
+  },
+  {
+    id: 20,
+    title: "Mountains the second",
+    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    collection_id: 2,
+    image_width: 1199,
+    image_height: 900,
+  },
+  {
+    id: 21,
+    title: "A-frame in the woods",
+    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    collection_id: 2,
+    image_width: 731,
+    image_height: 882,
+  },
+  {
+    id: 22,
+    title: "Mama bear with her cubs",
+    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    collection_id: 2,
+    image_width: 564,
+    image_height: 769,
   },
 ])
 
-# Snippet.create([
-#   {
-#     id: 19,
-#     title: "Mountains!",
-#     note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-#     link: "https://www.pinterest.com/pin/421508846380710927/feedback/?invite_code=3fb1fd4481be463488c23ba221c138c8&sender_id=803400158435010220",
-#     image_width: 1920,
-#     image_height: 1080,
-#   }
-# ])
+illustrations = [
+  'lorenzo-lanfranconi-1.jpg',
+  'lorenzo-lanfranconi-2.jpg',
+  'a-frame.jpg',
+  'bears.jpg',
+]
+
+illustration_snippets.each_with_index do |snippet, index|
+  snippet.image.attach(
+    io: File.open(Rails.root.join("app/assets/images/#{illustrations[index]}")), 
+    filename: illustrations[index]
+  )
+end
 
 puts "Created #{Snippet.count} snippets."

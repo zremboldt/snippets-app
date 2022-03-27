@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link';
 import { styled } from '../styles/stitches-theme';
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
 
       <main>
         <h1>Login</h1>
+        <Link href="/collections">Go to Collections</Link>
       </main>
     </div>
   )
