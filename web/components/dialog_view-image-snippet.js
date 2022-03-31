@@ -61,14 +61,12 @@ const Container = styled('div', {
   variants: {
     layout: {
       row: {
-        maxWidth: 800,
         flexDirection: 'row',
         '& img': {
           width: '50%',
         }
       },
       column: {
-        maxWidth: 600,
         flexDirection: 'column',
         '& img': {
           width: 'calc(100% - 12px)',

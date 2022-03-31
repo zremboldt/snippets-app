@@ -59,7 +59,7 @@ const FullScreenContainer = styled('div', {
 
 const Content = styled(DialogPrimitive.Content, {
   ...animateDialog,
-  width: 'min(600px, 100%)',
+  width: 'min(800px, 100%)',
   background: 'white',
   borderRadius: 'var(--border-radius-dialog)',
 });
