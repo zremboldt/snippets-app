@@ -7,6 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 
+
 ######################################################################
 # Tear it down
 ######################################################################
@@ -135,6 +136,8 @@ Snippet.create!([
     collection_id: 1,
   },
 ])
+
+# Illustration snippets
   
 illustration_snippets = Snippet.create([
   {
@@ -155,14 +158,6 @@ illustration_snippets = Snippet.create([
     image_height: 900,
   },
   {
-    id: 21,
-    title: "A-frame in the woods",
-    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-    collection_id: 2,
-    image_width: 731,
-    image_height: 882,
-  },
-  {
     id: 22,
     title: "Mama bear with her cubs",
     note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
@@ -170,20 +165,86 @@ illustration_snippets = Snippet.create([
     image_width: 564,
     image_height: 769,
   },
+  {
+    id: 24,
+    title: "Heather Martin",
+    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    link: 'https://www.heatherihnart.com/collections/118488',
+    collection_id: 2,
+    image_width: 555,
+    image_height: 800,
+  },
+  {
+    id: 23,
+    title: "High noon",
+    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    link: 'https://www.pinterest.com/pin/486388828517486824/',
+    collection_id: 2,
+    image_width: 1344,
+    image_height: 763,
+  },
+  {
+    id: 26,
+    title: "Road to Rio",
+    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    link: 'https://www.behance.net/gallery/56868611/The-road-to-Rio',
+    collection_id: 2,
+    image_width: 1920,
+    image_height: 1223,
+  },
+  {
+    id: 27,
+    title: "Summer landscape",
+    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    link: 'https://www.pinterest.com/pin/182044009909542612/',
+    collection_id: 2,
+    image_width: 1000,
+    image_height: 668,
+  },
+  {
+    id: 28,
+    title: "Cévennes",
+    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    collection_id: 2,
+    image_width: 700,
+    image_height: 875,
+  },
+  {
+    id: 29,
+    title: "Backpacking trip",
+    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    collection_id: 2,
+    image_width: 1920,
+    image_height: 2560,
+  },
+  {
+    id: 21,
+    title: "A-frame in the woods",
+    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    collection_id: 2,
+    image_width: 731,
+    image_height: 882,
+  },
 ])
-
-illustrations = [
-  'lorenzo-lanfranconi-1.jpg',
-  'lorenzo-lanfranconi-2.jpg',
-  'a-frame.jpg',
-  'bears.jpg',
-]
-
-illustration_snippets.each_with_index do |snippet, index|
-  snippet.image.attach(
-    io: File.open(Rails.root.join("app/assets/images/#{illustrations[index]}")), 
-    filename: illustrations[index]
-  )
-end
+  
+  illustrations = [
+    'lorenzo-lanfranconi-1.jpg',
+    'lorenzo-lanfranconi-2.jpg',
+    'bears.jpg',
+    'heather-martin.jpg',
+    'western-fortress.jpg',
+    'road-to-rio.jpg',
+    'summer-landscape.jpg',
+    'cevennes.jpg',
+    'backpacking.jpg',
+    'a-frame.jpg',
+  ]
+  
+  illustration_snippets.each_with_index do |snippet, index|
+    snippet.image.attach(
+      io: File.open(Rails.root.join("app/assets/images/#{illustrations[index]}")), 
+      filename: illustrations[index]
+    )
+  end
 
 puts "Created #{Snippet.count} snippets."

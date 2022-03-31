@@ -53,6 +53,10 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
+  # Causes ActiveStorage to work synchronously with the database to avoid "db is locked errors" during seeding.
+  # https://www.reddit.com/r/rails/comments/9ewt4a/seeding_images_with_active_storage/
+  config.active_job.queue_adapter = :inline
+
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
