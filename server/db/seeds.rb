@@ -209,29 +209,12 @@ snippets_data.each_with_index do |data, index|
     id: index + 1,
   }
 
-  if data[:title]
-    snippet_hash[:title] = data[:title]
-  end
-  
-  if data[:note]
-    snippet_hash[:note] = data[:note]
-  end
-
-  if data[:link]
-    snippet_hash[:link] = data[:link]
-  end
-
-  if data[:collection_id]
-    snippet_hash[:collection_id] = data[:collection_id]
-  end
-  
-  if data[:image_width]
-    snippet_hash[:image_width] = data[:image_width]
-  end
-  
-  if data[:image_height]
-    snippet_hash[:image_height] = data[:image_height]
-  end
+  snippet_hash[:title] = data[:title] if data[:title]
+  snippet_hash[:note] = data[:note] if data[:note]
+  snippet_hash[:link] = data[:link] if data[:link]
+  snippet_hash[:collection_id] = data[:collection_id] if data[:collection_id]
+  snippet_hash[:image_width] = data[:image_width] if data[:image_width]
+  snippet_hash[:image_height] = data[:image_height] if data[:image_height]
 
   created_snippet = Snippet.create!(snippet_hash)
   
