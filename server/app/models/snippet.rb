@@ -6,7 +6,7 @@ class Snippet < ApplicationRecord
 
   def validate_snippet
     if title.blank? && note.blank? && !image.attached?
-        errors.add(:base, "title, note, or image must be present")
+      errors.add(:base, "title, note, or image must be present")
     end
   end
 end
