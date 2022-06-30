@@ -35,6 +35,8 @@ module Api
         end
         
         if snippet.save
+          AnalyzeImageJob.perform_later snippet.id
+
           render json: {status: 'SUCCESS', message: 'Saved snippet', data: snippet}, status: :ok
         else
           render json: {status: 'ERROR', message: 'Snippet not saved', data: snippet.errors}, status: :unprocessable_entity

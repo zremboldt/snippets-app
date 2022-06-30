@@ -4,28 +4,28 @@ class ExampleJob < ApplicationJob
   def perform(*args)
     # do all of the work with rekognition here
 
-    photo = 'app/assets/images/canyon.jpg'
-    path = File.expand_path(photo) # expand path relative to the current directory
-    file = File.read(path) # convert image to base64
+    # photo = 'app/assets/images/canyon.jpg'
+    # path = File.expand_path(photo) # expand path relative to the current directory
+    # file = File.read(path) # convert image to base64
     
-    puts "----------------------------"
+    # puts "----------------------------"
     
-    client = Aws::Rekognition::Client.new
+    # client = Aws::Rekognition::Client.new
     
-    response = client.detect_labels({
-      image: {
-        bytes: file,
-      }, 
-      max_labels: 10, 
-      min_confidence: 70, 
-    })
+    # response = client.detect_labels({
+    #   image: {
+    #     bytes: file,
+    #   }, 
+    #   max_labels: 10, 
+    #   min_confidence: 70, 
+    # })
     
-    # prints response as a hash
-    puts response.to_h
+    # puts response.to_h
     
-    puts "----------------------------"
+    # puts "----------------------------"
       
     # Do something later
     puts "hello world!"
+    puts args
   end
 end

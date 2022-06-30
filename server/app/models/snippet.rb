@@ -1,4 +1,5 @@
 class Snippet < ApplicationRecord
+  has_many :labels
   has_one_attached :image
   belongs_to :collection, optional: true
 

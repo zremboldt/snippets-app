@@ -204,10 +204,8 @@ snippets_data = [
   },
 ]
 
-snippets_data.each_with_index do |data, index|
-  snippet_hash = {
-    id: index + 1,
-  }
+snippets_data.each do |data|
+  snippet_hash = {}
 
   snippet_hash[:title] = data[:title] if data[:title]
   snippet_hash[:note] = data[:note] if data[:note]
