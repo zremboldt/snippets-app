@@ -9,7 +9,6 @@ import { Trash } from '../assets/icon-components/trash';
 export default function SnippetButtonsGroup({ id, link, data, setData }) {
   const [isDeleteAvailable, setIsDeleteAvailable] = useState(false);
 
-  console.log(data)
   const handleDelete = async () => {
     const url = `http://localhost:3000/api/v1/snippets/${id}`;
 

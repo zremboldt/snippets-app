@@ -18,6 +18,7 @@ module Api
             title: snippet.title,
             note: snippet.note,
             link: snippet.link,
+            labels: snippet.labels,
             image_width: snippet.image_width,
             image_height: snippet.image_height,
             image: snippet.image.attached? ? url_for(snippet.image) : nil

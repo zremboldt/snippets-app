@@ -12,9 +12,10 @@ import SnippetButtonsGroup from './snippet-buttons-group';
 
 // Doc on stitches breakpoints: https://stitches.dev/docs/breakpoints#setting-an-initial-variant
 
-export default function DialogViewImageSnippet({ id, title, note, link, image, data, setData, isLandscapeImg = false }) {
+export default function DialogViewImageSnippet({ id, title, note, link, image, labels, data, setData, isLandscapeImg = false }) {
   const [isDeleteAvailable, setIsDeleteAvailable] = useState(false);
 
+  console.log(labels)
   return (
     <Container
       layout={isLandscapeImg ? 'column' : {

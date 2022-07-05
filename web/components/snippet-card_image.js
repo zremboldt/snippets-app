@@ -9,6 +9,7 @@ export default function ImageCard({
   title,
   note,
   link,
+  labels,
   image_width,
   image_height,
   image,
@@ -50,6 +51,7 @@ export default function ImageCard({
           title={title}
           note={note}
           link={link}
+          labels={labels}
           id={id}
           data={data}
           setData={setData}
