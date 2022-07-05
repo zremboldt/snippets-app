@@ -37,6 +37,8 @@ Shows fields used to create a snippet.
 - Link/url
 - Collection/s
 
+## Features
+
 ### Smart labels via machine learning
 
 When a user uploads an image an asynchronous job is enqueued via Redis/Sidekiq. The job makes a call to an AWS service called [Rekognition](https://aws.amazon.com/rekognition/) which uses machine learning to analyze the image, returning labels and a confidence score for the things it observes are part of the image. Those labels are attached to the snippet making it easy to search the app and find the Snippet you’re looking for later on.
