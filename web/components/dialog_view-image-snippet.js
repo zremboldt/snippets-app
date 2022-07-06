@@ -27,6 +27,9 @@ export default function DialogViewImageSnippet({ id, title, note, link, image, l
       <TextContainer>
         {title && <h3>{title}</h3>}
         {note && <p>{note}</p>}
+        <LabelContainer>
+          {labels && labels.map(({name, id}) => <Label key={id}>{name}</Label>)}
+        </LabelContainer>
       </TextContainer>
       <SnippetButtonsGroup
         id={id}
@@ -86,11 +89,29 @@ const Img = styled('img', {
 })
 
 const TextContainer = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
   padding: 34,
   paddingRight: 40,
   '& > * + *': {
     marginTop: 20,
   },
+});
+
+const LabelContainer = styled('div', {
+  marginTop: 'auto',
+  paddingTop: 20,
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: 5,
+});
+
+const Label = styled('p', {
+  padding: '2px 10px',
+  backgroundColor: 'gold',
+  borderRadius: 999,
+  fontSize: 14,
+
 });
 
 const ButtonsGroup = styled('div', {
