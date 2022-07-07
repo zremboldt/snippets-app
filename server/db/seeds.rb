@@ -202,7 +202,7 @@ snippets_data = [
     image_filename: 'windwaker.jpg',
     image_width: 1920,
     image_height: 2307,
-    label_names: ['Sea', 'Ocean', 'Outdoors', 'Nature', 'Water', 'Shoreline', 'Land', 'Coast', 'Legend of Zelda'],
+    label_names: ['Sea', 'Ocean', 'Outdoors', 'Boat', 'Sailing', 'Nature', 'Water', 'Shoreline', 'Land', 'Coast', 'Legend of Zelda'],
   },
   {
     title: "A-frame in the woods",
