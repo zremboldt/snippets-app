@@ -14,6 +14,7 @@
 
 Snippet.destroy_all
 Collection.destroy_all
+Label.destroy_all
 
 
 
@@ -60,6 +61,7 @@ snippets_data = [
     image_filename: 'cevennes.jpg',
     image_width: 700,
     image_height: 875,
+    label_names: ['Art', 'Painting', 'Brush Strokes', 'Outdoors', 'Old Car', 'Trees', 'Shade', 'Field', 'Countryside', 'Grassy', 'Road', 'Rural', 'Overgrown'],
   },
   {
     note: "“We are what we repeatedly do. Excellence, then, is not an act, but a habit.” – Aristotle",
@@ -76,6 +78,7 @@ snippets_data = [
     image_filename: 'lorenzo-lanfranconi-2.jpg',
     image_width: 1199,
     image_height: 900,
+    label_names: ['Mountains', 'Art', 'Painting', 'Outdoors', 'Trees', 'Deer', 'Stream', 'Water', 'Clouds', 'Meadow'],
   },
   {
     title: "Heather Martin",
@@ -85,6 +88,7 @@ snippets_data = [
     image_filename: 'heather-martin.jpg',
     image_width: 555,
     image_height: 800,
+    label_names: ['Art', 'Painting', 'Brush Strokes', 'Outdoors', 'Trees', 'Countryside', 'Grassy'],
   },
   {
     title: "High noon",
@@ -94,6 +98,7 @@ snippets_data = [
     image_filename: 'western-fortress.jpg',
     image_width: 1344,
     image_height: 763,
+    label_names: ['Art', 'Painting', 'Outdoors', 'Desert', 'Castle', 'Cowboy', 'Landscape'],
   },
   {
     note: "“The role of the designer is that of a good, thoughtful host anticipating the needs of his guests.” – Charles Eames",
@@ -115,6 +120,7 @@ snippets_data = [
     image_filename: 'road-to-rio.jpg',
     image_width: 1920,
     image_height: 1223,
+    label_names: ['Art', 'Water', 'Sea', 'Cliffs', 'Building', 'Landscape'],
   },
   {
     note: "“If you think good design is expensive, you should look at the cost of bad design.” – Ralf Speth",
@@ -136,6 +142,7 @@ snippets_data = [
     image_filename: 'summer-landscape.jpg',
     image_width: 1000,
     image_height: 668,
+    label_names: ['Art', 'Painting', 'Brush Strokes', 'Outdoors', 'Trees', 'Countryside', 'Grassy', 'Hills'],
   },
   {
     note: "“If I had asked people what they wanted, they would have said faster horses.” – Henry Ford",
@@ -157,6 +164,7 @@ snippets_data = [
     image_filename: 'lorenzo-lanfranconi-1.jpg',
     image_width: 1920,
     image_height: 1080,
+    label_names: ['Art', 'Outdoors', 'Landscape', 'Mountains', 'Grassy', 'Clouds', 'Trail', 'Rocks'],
   },
   {
     note: "“When you’re curious, you find lots of interesting things to do.” – Walt Disney",
@@ -177,6 +185,7 @@ snippets_data = [
     image_filename: 'bears.jpg',
     image_width: 564,
     image_height: 769,
+    label_names: ['Art', 'Outdoors', 'Forest', 'Mountains', 'Grassy', 'Bears', 'Meadow', 'Lake'],
   },
   {
     note: "“How well we communicate is determined not by how well we say things, but how well we are understood.” – Andrew Grove",
@@ -187,12 +196,13 @@ snippets_data = [
     collection_id: 1,
   },
   {
-    title: "Backpacking trip",
+    title: "Windwaker",
     note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
     collection_id: 2,
-    image_filename: 'backpacking.jpg',
+    image_filename: 'windwaker.jpg',
     image_width: 1920,
-    image_height: 2560,
+    image_height: 2307,
+    label_names: ['Sea', 'Ocean', 'Outdoors', 'Nature', 'Water', 'Shoreline', 'Land', 'Coast', 'Legend of Zelda'],
   },
   {
     title: "A-frame in the woods",
@@ -201,6 +211,7 @@ snippets_data = [
     image_filename: 'a-frame.jpg',
     image_width: 731,
     image_height: 882,
+    label_names: ['Art', 'Outdoors', 'Forest', 'Tree', 'Cabin', 'Window', 'Twig', 'Triangle', 'Sunlight'],
   },
 ]
 
@@ -222,6 +233,14 @@ snippets_data.each do |data|
       filename: data[:image_filename]
     )
   end
+
+  if data[:label_names]
+    data[:label_names].each do |label_name|
+      created_label = Label.create!(name: label_name)
+      created_snippet.labels.append(created_label)
+    end
+  end
 end
 
 puts "Created #{Snippet.count} snippets."
+puts "Created #{Label.count} labels."

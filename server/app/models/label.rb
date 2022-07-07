@@ -1,3 +1,3 @@
 class Label < ApplicationRecord
-  belongs_to :snippet
+  belongs_to :snippet, optional: true
 end
