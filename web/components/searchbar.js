@@ -15,7 +15,7 @@ const SearchContainer = styled('div', {
   position: 'fixed',
   top: 'min(30px, 2vw)',
   right: 'min(30px, 2vw)',
-  zIndex: 10,
+  zIndex: 2,
   display: 'flex',
   alignItems: 'center',
   backgroundColor: 'black',
