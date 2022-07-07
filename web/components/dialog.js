@@ -4,11 +4,11 @@ import { Cross1Icon } from '@radix-ui/react-icons';
 import { styled, keyframes } from '../styles/stitches-theme';
 import { baseButtonStyles } from '../styles/base-styles';
 
-const DialogContent = ({ children, ...props }, forwardedRef) => (
+const DialogContent = ({ children, modalWidth, ...props }, forwardedRef) => (
   <DialogPrimitive.Portal>
     <Overlay />
     <FullScreenContainer {...props} ref={forwardedRef}>
-      <Content>
+      <Content modalWidth={modalWidth}>
         {children}
         <CloseButton>
           <Cross1Icon />
@@ -60,9 +60,20 @@ const FullScreenContainer = styled('div', {
 
 const Content = styled(DialogPrimitive.Content, {
   ...animateDialog,
-  width: 'min(800px, 100%)',
+  width: 'min(600px, 100%)',
   background: 'white',
   borderRadius: 'var(--border-radius-dialog)',
+
+  variants: {
+    modalWidth: {
+      wide: {
+        width: 'min(800px, 100%)',
+      },
+      narrow: {
+        width: 'min(400px, 100%)',
+      },
+    },
+  },
 });
 
 const CloseButton = styled(DialogPrimitive.Close, {

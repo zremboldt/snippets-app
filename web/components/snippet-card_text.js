@@ -11,7 +11,7 @@ export default function TextCard({ id, title, note, link, data, setData }) {
         {title && <h3>{title}</h3>}
         {note && <Note note={note} />}
       </Content>
-      <DialogWrapper>
+      <DialogWrapper modalWidth={'narrow'}>
         <DialogViewTextSnippet
           title={title}
           note={note}

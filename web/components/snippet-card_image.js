@@ -44,7 +44,7 @@ export default function ImageCard({
           {note && <p>{note}</p>}
         </TextContainer>
       </Content>
-      <DialogWrapper>
+      <DialogWrapper modalWidth={!isLandscapeImg && 'wide'}>
         <DialogViewImageSnippet
           isLandscapeImg={isLandscapeImg}
           image={optimisticImage || image}
@@ -92,6 +92,7 @@ const Img = styled('img', {
   objectFit: 'cover',
   width: '100%',
   minHeight: '100%',
+  maxHeight: 600,
   pointerEvents: 'none',
   transition: 'opacity 300ms var(--ease-out-quart)',
 })

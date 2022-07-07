@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { styled } from '../styles/stitches-theme';
-import { Dialog, DialogTrigger, DialogWrapper } from './dialog';
-import DialogViewImageSnippet from './dialog_view-image-snippet';
-import Image from 'next/image';
 
 
 function checkIsQuote(note) {
