@@ -10,7 +10,11 @@ import ImageCard from '../../components/snippet-card_image';
 export default function AllSnippets() {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState(null);
+  const [searchQuery, setSearchQuery] = useState(null);
+  const [searchResults, setSearchResults] = useState(null);
   const [isLoading, setLoading] = useState(true);
+
+  console.log(searchQuery)
 
   useEffect(() => {
     setLoading(true)
@@ -28,8 +32,25 @@ export default function AllSnippets() {
       })
   }, [])
 
+  
   if (isLoading) return null;
   // if (isLoading) return <p>Loading...</p>
+  
+  if (searchQuery?.length > 2) {
+    const filteredData = data.snippets.filter((snippet) => {
+      const queryMatchesTitle = snippet?.title?.toLowerCase().includes(searchQuery.toLowerCase())
+      const queryMatchesLabels = snippet?.labels?.some(({name}) => name.toLowerCase().includes(searchQuery.toLowerCase()))
+
+      if (queryMatchesTitle || queryMatchesLabels) { return true }
+      return false
+    })
+
+    if (filteredData.length > 0 && filteredData.length !== searchResults?.length) {
+      setSearchResults(filteredData)
+    }
+  } else if (searchResults !== null) {
+    setSearchResults(null)
+  }
 
   return (
     <div className='layout'>
@@ -40,11 +61,12 @@ export default function AllSnippets() {
       </Head>
 
       <main>
+        <input onChange={(e) => setSearchQuery(e.target.value)} type="text" />
         <PageTitle>All Snippets</PageTitle>
 
-        {data.snippets.length ? (
+        {searchResults?.length > 0 && (
           <Grid>
-            {data.snippets.map((snippet) => {
+            {searchResults.map((snippet) => {
               if (snippet.optimisticImage || snippet.image) {
                 return (
                   <ImageCard
@@ -66,8 +88,36 @@ export default function AllSnippets() {
               )
             })}
           </Grid>
-        ) : (
-          <p>Add some snippets!</p>
+        )}
+
+        {searchResults === null && (
+          data.snippets.length ? (
+            <Grid>
+              {data.snippets.map((snippet) => {
+                if (snippet.optimisticImage || snippet.image) {
+                  return (
+                    <ImageCard
+                      key={snippet.id}
+                      setData={setData}
+                      data={data}
+                      {...snippet}
+                    />
+                  )
+                }
+
+                return (
+                  <TextCard
+                    key={snippet.id}
+                    setData={setData}
+                    data={data}
+                    {...snippet}
+                  />
+                )
+              })}
+            </Grid>
+          ) : (
+            <p>Add some snippets!</p>
+          )
         )}
       </main>
 

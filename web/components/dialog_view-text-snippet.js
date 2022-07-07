@@ -26,7 +26,6 @@ const Container = styled('div', {
   position: 'relative',
   padding: 34,
   paddingRight: 55,
-  maxWidth: 600,
   minHeight: 252,
   '& > * + *': {
     marginTop: 20,
