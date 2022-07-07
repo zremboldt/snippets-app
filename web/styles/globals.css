@@ -65,6 +65,7 @@ h5,
 h6,
 p,
 span,
+input,
 li {
   color: hsl(236, 39%, 17%);
   font-family: var(--font-family);

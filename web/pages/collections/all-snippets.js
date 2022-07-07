@@ -6,6 +6,7 @@ import { styled } from '../../styles/stitches-theme';
 import { baseButtonStyles } from '../../styles/base-styles';
 import TextCard from '../../components/snippet-card_text';
 import ImageCard from '../../components/snippet-card_image';
+import Searchbar from '../../components/searchbar';
 
 export default function AllSnippets() {
   const [open, setOpen] = useState(false);
@@ -34,7 +35,6 @@ export default function AllSnippets() {
 
   
   if (isLoading) return null;
-  // if (isLoading) return <p>Loading...</p>
   
   if (searchQuery?.length > 2) {
     const filteredData = data.snippets.filter((snippet) => {
@@ -60,11 +60,12 @@ export default function AllSnippets() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Searchbar setSearchQuery={setSearchQuery} />
+
       <main>
-        <input onChange={(e) => setSearchQuery(e.target.value)} type="text" />
         <PageTitle>All Snippets</PageTitle>
 
-        {searchResults?.length > 0 && (
+        {searchResults?.length && (
           <Grid>
             {searchResults.map((snippet) => {
               if (snippet.optimisticImage || snippet.image) {
@@ -141,8 +142,10 @@ const PageTitle = styled('h1', {
 
 const Grid = styled('div', {
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
   gap: 24,
+  gridTemplateColumns: '1fr',
+  '@bp1': { gridTemplateColumns: '1fr 1fr' },
+  '@bp3': { gridTemplateColumns: '1fr 1fr 1fr' }
 });
 
 const NewSnippetButton = styled(DialogTrigger, {
