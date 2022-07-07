@@ -47,7 +47,6 @@ module Api
       # Access this with a DELETE request to: http://localhost:3000/api/v1/snippets/1
       def destroy
         snippet = Snippet.find(params[:id])
-        snippet.image.attached? ? snippet.image.purge : nil
         snippet.destroy
       end
 

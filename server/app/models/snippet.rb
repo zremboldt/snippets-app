@@ -1,5 +1,5 @@
 class Snippet < ApplicationRecord
-  has_many :labels
+  has_many :labels, dependent: :destroy
   has_one_attached :image
   belongs_to :collection, optional: true
 
