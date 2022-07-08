@@ -1,7 +1,5 @@
 # Create a web app called Snippets
 
-<video src='./snippets-app.mp4' width='400px'>
-
 ## Elements
 
 - A "Snippet" is a piece of text, an image, or both.
